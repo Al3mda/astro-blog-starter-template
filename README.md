@@ -62,3 +62,18 @@ Check out [our documentation](https://docs.astro.build) or jump into our [Discor
 ## Credit
 
 This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+
+## i18n (astro-i18n-aut)
+This project uses `astro-i18n-aut` to render translated versions of `.astro` pages without duplicating templates.
+- Default locale: `en`
+- Locales: `en-US`, `ar-SA`
+- Directory URLs enabled: pages render as `/about/` and `/ar/about/`.
+
+Get the current locale inside a page:
+
+```astro
+---
+import { getLocale } from "astro-i18n-aut";
+const locale = getLocale(Astro.url);
+---
+```

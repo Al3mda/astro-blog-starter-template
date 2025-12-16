@@ -2,6 +2,9 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import { render } from 'astro:content';
+import { getLocale } from "astro-i18n-aut";
+
+const locale = getLocale(Astro.url);
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -16,6 +19,6 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} locale={locale}>
 	<Content />
 </BlogPost>

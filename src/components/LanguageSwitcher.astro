@@ -1,0 +1,47 @@
+---
+import { getLocale } from "astro-i18n-aut";
+
+const locale = getLocale(Astro.url);
+const basePath = Astro.url.pathname.replace(/^\/(ar|en)/, "").replace(/\/$/, "") || "/";
+
+const enLink = basePath + "/";
+const arLink = `/ar${basePath}/`;
+---
+
+<div class="language-switcher">
+  {locale === "en" ? (
+    <>
+      <span class="active">English</span>
+      <a href={arLink}>العربية</a>
+    </>
+  ) : (
+    <>
+      <a href={enLink}>English</a>
+      <span class="active">العربية</span>
+    </>
+  )}
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .language-switcher a {
+    color: var(--text-color);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .language-switcher a:hover {
+    opacity: 1;
+  }
+
+  .language-switcher .active {
+    font-weight: 600;
+    opacity: 1;
+  }
+</style>

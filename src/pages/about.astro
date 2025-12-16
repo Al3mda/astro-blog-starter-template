@@ -1,9 +1,21 @@
 ---
 import Layout from '../layouts/BlogPost.astro';
+import { Schema } from 'astro-seo-schema';
+import { getLocale } from "astro-i18n-aut";
+
+const locale = getLocale(Astro.url);
+let title: string;
+switch (locale) {
+  case "ar":
+    title = "عنّي";
+    break;
+  default:
+    title = "About Me";
+}
 ---
 
 <Layout
-	title="About Me"
+	title={title}
 	description="Lorem ipsum dolor sit amet"
 	pubDate={new Date('August 08 2021')}
 	heroImage="/blog-placeholder-about.jpg"

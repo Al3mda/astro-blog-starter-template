@@ -2,47 +2,105 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { Schema } from 'astro-seo-schema';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getLocale } from "astro-i18n-aut";
+
+const locale = getLocale(Astro.url);
+
+const content = {
+  en: {
+    title: "🧑‍🚀 Hello, Astronaut!",
+    intro: "Welcome to the official Astro blog starter template. This template serves as a lightweight, minimally-styled starting point for anyone looking to build a personal website, blog, or portfolio with Astro.",
+    config: "This template comes with a few integrations already configured in your astro.config.mjs file. You can customize your setup with Astro Integrations to add tools like Tailwind, React, or Vue to your project.",
+    ideas: "Here are a few ideas on how to get started with the template:",
+    tips: [
+      "Edit this page in src/pages/index.astro",
+      "Edit the site header items in src/components/Header.astro",
+      "Add your name to the footer in src/components/Footer.astro",
+      "Check out the included blog posts in src/content/blog/",
+      "Customize the blog post page layout in src/layouts/BlogPost.astro",
+    ],
+    help: "Have fun! If you get stuck, remember to read the docs or join us on Discord to ask questions.",
+  },
+  ar: {
+    title: "🧑‍🚀 مرحبا برائد الفضاء!",
+    intro: "مرحبا بك في نموذج مدونة Astro الرسمي. يعمل هذا النموذج كنقطة انطلاق خفيفة الوزن وذات نمط بسيط لأي شخص يتطلع إلى بناء موقع ويب شخصي أو مدونة أو محفظة باستخدام Astro.",
+    config: "يتضمن هذا النموذج عدة تكاملات مكونة بالفعل في ملف astro.config.mjs الخاص بك. يمكنك تخصيص الإعداد باستخدام تكاملات Astro لإضافة أدوات مثل Tailwind أو React أو Vue إلى مشروعك.",
+    ideas: "إليك بعض الأفكار حول كيفية البدء بالنموذج:",
+    tips: [
+      "تحرير هذه الصفحة في src/pages/index.astro",
+      "تحرير عناصر رأس الموقع في src/components/Header.astro",
+      "أضف اسمك في التذييل في src/components/Footer.astro",
+      "اطلع على منشورات المدونة المضمنة في src/content/blog/",
+      "تخصيص تخطيط صفحة منشور المدونة في src/layouts/BlogPost.astro",
+    ],
+    help: "استمتع! إذا استعثرت، تذكر قراءة الوثائق أو انضم إلينا في Discord لطرح الأسئلة.",
+  },
+};
+
+const currentContent = content[locale] || content.en;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale === "ar" ? "ar" : "en"}>
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<Schema
+			item={{
+				'@context': 'https://schema.org',
+				'@type': 'WebSite',
+				name: SITE_TITLE,
+				description: SITE_DESCRIPTION,
+				url: Astro.site?.toString(),
+			}}
+		/>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+			<h1>{currentContent.title}</h1>
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				{locale === "en" ? (
+					<>
+						Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
+						template serves as a lightweight, minimally-styled starting point for anyone looking to build
+						a personal website, blog, or portfolio with Astro.
+					</>
+				) : (
+					<>
+						مرحبا بك في نموذج مدونة <a href="https://astro.build/">Astro</a> الرسمي. يعمل هذا النموذج كنقطة انطلاق خفيفة الوزن وذات نمط بسيط لأي شخص يتطلع إلى بناء موقع ويب شخصي أو مدونة أو محفظة باستخدام Astro.
+					</>
+				)}
 			</p>
 			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+				{locale === "en" ? (
+					<>
+						This template comes with a few integrations already configured in your
+						<code>astro.config.mjs</code> file. You can customize your setup with
+						<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
+						React, or Vue to your project.
+					</>
+				) : (
+					<>
+						يتضمن هذا النموذج عدة تكاملات مكونة بالفعل في ملف <code>astro.config.mjs</code> الخاص بك. يمكنك تخصيص الإعداد باستخدام <a href="https://astro.build/integrations">تكاملات Astro</a> لإضافة أدوات مثل Tailwind أو React أو Vue إلى مشروعك.
+					</>
+				)}
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
+			<p>{currentContent.ideas}</p>
 			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+				{currentContent.tips.map((tip) => <li>{tip}</li>)}
 			</ul>
 			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+				{locale === "en" ? (
+					<>
+						Have fun! If you get stuck, remember to <a href="https://docs.astro.build/">read the docs</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
+					</>
+				) : (
+					<>
+						استمتع! إذا استعثرت، تذكر <a href="https://docs.astro.build/">قراءة الوثائق</a> أو <a href="https://astro.build/chat">انضم إلينا في Discord</a> لطرح الأسئلة.
+					</>
+				)}
 			</p>
 		</main>
 		<Footer />
