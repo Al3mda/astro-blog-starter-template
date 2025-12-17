@@ -1,0 +1,29 @@
+---
+// src/components/ui/Card.astro
+// Reusable card component
+
+interface Props {
+  variant?: 'default' | 'hover' | 'feature' | 'pricing';
+  class?: string;
+}
+
+const { 
+  variant = 'default',
+  class: className = '' 
+} = Astro.props;
+
+const baseClasses = 'bg-dark-secondary rounded-card p-6 border border-white/10';
+
+const variantClasses = {
+  default: '',
+  hover: 'transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-glow-primary',
+  feature: 'feature-card',
+  pricing: 'pricing-card',
+};
+
+const classes = `${baseClasses} ${variantClasses[variant]} ${className}`;
+---
+
+<div class={classes}>
+  <slot />
+</div>
