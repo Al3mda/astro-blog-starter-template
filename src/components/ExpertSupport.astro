@@ -1,129 +1,60 @@
----
-import { getTranslation } from '@/i18n/utils';
-
-interface Props {
-  lang: 'en' | 'ar';
-}
-
-const { lang } = Astro.props;
-const t = getTranslation(lang);
-
-const services = [
-  {
-    icon: 'ri-tools-fill',
-    title: t('expertSupport.basic.title'),
-    price: '$199',
-    period: t('expertSupport.basic.period'),
-    features: [
-      t('expertSupport.basic.feature1'),
-      t('expertSupport.basic.feature2'),
-      t('expertSupport.basic.feature3'),
-      t('expertSupport.basic.feature4'),
-      t('expertSupport.basic.feature5')
-    ],
-    buttonText: t('expertSupport.basic.button'),
-    buttonStyle: 'border border-primary text-primary hover:bg-primary hover:text-dark'
-  },
-  {
-    icon: 'ri-settings-3-fill',
-    title: t('expertSupport.pro.title'),
-    price: '$499',
-    period: t('expertSupport.pro.period'),
-    features: [
-      t('expertSupport.pro.feature1'),
-      t('expertSupport.pro.feature2'),
-      t('expertSupport.pro.feature3'),
-      t('expertSupport.pro.feature4'),
-      t('expertSupport.pro.feature5'),
-      t('expertSupport.pro.feature6')
-    ],
-    buttonText: t('expertSupport.pro.button'),
-    buttonStyle: 'gradient-bg text-white hover:opacity-90',
-    popular: true
-  },
-  {
-    icon: 'ri-customer-service-2-fill',
-    title: t('expertSupport.managed.title'),
-    price: '$299',
-    period: t('expertSupport.managed.period'),
-    features: [
-      t('expertSupport.managed.feature1'),
-      t('expertSupport.managed.feature2'),
-      t('expertSupport.managed.feature3'),
-      t('expertSupport.managed.feature4'),
-      t('expertSupport.managed.feature5')
-    ],
-    buttonText: t('expertSupport.managed.button'),
-    buttonStyle: 'border border-primary text-primary hover:bg-primary hover:text-dark'
-  }
-];
----
-
 <section class="py-16">
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        {t('expertSupport.title.prefix')} <span class="gradient-text">{t('expertSupport.title.highlight')}</span>
-      </h2>
-      <p class="text-gray-300 max-w-2xl mx-auto">
-        {t('expertSupport.subtitle')}
-      </p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Let <span class="gradient-text">Experts Handle It</span></h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">Don't have time to build? Our team sets up, optimizes, and manages your chatbot for you.</p>
     </div>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {services.map((service) => (
-        <div class={`pricing-card bg-[#241A4F] rounded-xl p-8 hover:transform hover:scale-105 transition-all duration-300 ${
-          service.popular ? 'border-2 border-primary relative' : ''
-        }`}>
-          {service.popular && (
-            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-dark px-4 py-1 rounded-full text-sm font-medium">
-              {t('expertSupport.bestValue')}
-            </div>
-          )}
-          
-          <div class="text-center mb-6">
-            <i class={`${service.icon} text-5xl text-primary mb-4`}></i>
-            <h3 class="text-2xl font-bold mb-2">{service.title}</h3>
-            <p class="text-4xl font-bold text-primary mb-2">{service.price}</p>
-            <p class="text-sm text-gray-400">{service.period}</p>
-          </div>
-
-          <ul class="space-y-3 mb-8">
-            {service.features.map((feature) => (
-              <li class="flex items-start">
-                <i class="ri-check-line text-primary mr-2 mt-0.5"></i>
-                <span class="text-sm">{feature}</span>
-              </li>
-            ))}
-          </ul>
-
-          <button class={`w-full py-3 rounded-button transition-colors ${service.buttonStyle}`}>
-            {service.buttonText}
-          </button>
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-8 hover:transform hover:scale-105 transition-all duration-300">
+        <div class="text-center mb-6">
+          <i class="ri-tools-fill text-5xl text-primary mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">Basic Setup</h3>
+          <p class="text-4xl font-bold text-primary mb-2">$199</p>
+          <p class="text-sm text-gray-400">One-time</p>
         </div>
-      ))}
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">1 bot setup + configuration</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">3 conversation flows</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">1 channel integration</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">Basic testing & launch</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">2 weeks support</span></li>
+        </ul>
+        <button class="w-full py-3 border border-primary text-primary rounded-button hover:bg-primary hover:text-dark transition-colors">Get Started</button>
+      </div>
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-8 border-2 border-primary relative hover:transform hover:scale-105 transition-all duration-300">
+        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-dark px-4 py-1 rounded-full text-sm font-medium">Best Value</div>
+        <div class="text-center mb-6">
+          <i class="ri-settings-3-fill text-5xl text-primary mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">Professional Setup</h3>
+          <p class="text-4xl font-bold text-primary mb-2">$499</p>
+          <p class="text-sm text-gray-400">One-time</p>
+        </div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">Complete bot setup</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">Up to 10 conversation flows</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">3 channel integrations</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">AI training & optimization</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">CRM integration (1 tool)</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">1 month support</span></li>
+        </ul>
+        <button class="w-full py-3 gradient-bg text-white rounded-button hover:opacity-90 transition-opacity">Get Pro Setup</button>
+      </div>
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-8 hover:transform hover:scale-105 transition-all duration-300">
+        <div class="text-center mb-6">
+          <i class="ri-customer-service-2-fill text-5xl text-primary mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">Monthly Management</h3>
+          <p class="text-4xl font-bold text-primary mb-2">$299</p>
+          <p class="text-sm text-gray-400">Per month</p>
+        </div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">Ongoing bot management</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">Monthly updates & tweaks</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">AI performance optimization</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">Analytics & reporting</span></li>
+          <li class="flex items-start"><i class="ri-check-line text-primary mr-2 mt-0.5"></i><span class="text-sm">Priority support</span></li>
+        </ul>
+        <button class="w-full py-3 border border-primary text-primary rounded-button hover:bg-primary hover:text-dark transition-colors">Subscribe</button>
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  .gradient-text {
-    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-bg {
-    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
-  }
-
-  .pricing-card {
-    border: 1px solid rgba(255, 182, 47, 0.1);
-  }
-
-  .pricing-card:hover {
-    border-color: rgba(255, 182, 47, 0.3);
-    box-shadow: 0 10px 40px rgba(255, 182, 47, 0.1);
-  }
-</style>

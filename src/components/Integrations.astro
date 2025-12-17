@@ -1,61 +1,149 @@
----
-import { getTranslation } from '@/i18n/utils';
-
-interface Props {
-  lang: 'en' | 'ar';
-}
-
-const { lang } = Astro.props;
-const t = getTranslation(lang);
-
-const integrations = [
-  { name: 'Shopify', icon: 'ri-shopping-bag-fill', color: '#96BF48' },
-  { name: 'WooCommerce', icon: 'ri-shopping-cart-fill', color: '#96588A' },
-  { name: 'Zapier', icon: 'ri-flashlight-fill', color: '#FF4A00' },
-  { name: 'Google Sheets', icon: 'ri-file-excel-fill', color: '#34A853' },
-  { name: 'Stripe', icon: 'ri-bank-card-fill', color: '#635BFF' },
-  { name: 'Calendly', icon: 'ri-calendar-check-fill', color: '#006BFF' },
-  { name: 'Slack', icon: 'ri-slack-fill', color: '#4A154B' },
-  { name: 'HubSpot', icon: 'ri-customer-service-2-fill', color: '#FF7A59' }
-];
----
-
-<section class="py-20">
+<section id="integrations" class="py-20 bg-[#1D1245]">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        {t('integrations.title.prefix')} <span class="gradient-text">{t('integrations.title.highlight')}</span>
-      </h2>
-      <p class="text-gray-300 max-w-2xl mx-auto">
-        {t('integrations.subtitle')}
-      </p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Powerful <span class="gradient-text">Integrations</span></h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">Connect MeaChat with your favorite tools to sync data, trigger automations, and keep every system up to date.</p>
     </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 max-w-6xl mx-auto">
-      {integrations.map((integration) => (
-        <div class="flex flex-col items-center group">
-          <div class="w-16 h-16 rounded-xl bg-[#241A4F] flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 border border-primary/10 group-hover:border-primary/30">
-            <i class={`${integration.icon} text-3xl`} style={`color: ${integration.color};`}></i>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <!-- Messaging & Social -->
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-6">Messaging & Social</h3>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/whatsapp.svg" alt="WhatsApp" class="w-6 h-6" />
+            <span class="ml-2 text-sm">WhatsApp</span>
           </div>
-          <p class="text-xs text-gray-400 text-center">{integration.name}</p>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/messenger.svg" alt="Messenger" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Messenger</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/instagram.svg" alt="Instagram" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Instagram</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/telegram.svg" alt="Telegram" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Telegram</span>
+          </div>
         </div>
-      ))}
+      </div>
+      <!-- E-commerce -->
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-6">E-commerce</h3>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/shopify.svg" alt="Shopify" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Shopify</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/woocommerce.svg" alt="WooCommerce" class="w-6 h-6" />
+            <span class="ml-2 text-sm">WooCommerce</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/stripe.svg" alt="Stripe" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Stripe</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/paypal.svg" alt="PayPal" class="w-6 h-6" />
+            <span class="ml-2 text-sm">PayPal</span>
+          </div>
+        </div>
+      </div>
+      <!-- CRM & Support -->
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-6">CRM & Support</h3>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/salesforce.svg" alt="Salesforce" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Salesforce</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/hubspot-seeklogo.svg" alt="HubSpot" class="w-6 h-6" />
+            <span class="ml-2 text-sm">HubSpot</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/zendesk-seeklogo.svg" alt="Zendesk" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Zendesk</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/intercom.svg" alt="Intercom" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Intercom</span>
+          </div>
+        </div>
+      </div>
+      <!-- Google Services -->
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-6">Google Services</h3>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/gmail.svg" alt="Gmail" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Gmail</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/google-translate.svg" alt="Google Translate" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Google Translate</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/google-maps.svg" alt="Google Maps" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Google Maps</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/google-sheets.svg" alt="Google Sheets" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Google Sheets</span>
+          </div>
+        </div>
+      </div>
+      <!-- AWS -->
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-6">Amazon Web Services</h3>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/aws-s3.svg" alt="S3" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Amazon S3</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/aws-ses.svg" alt="SES" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Amazon SES</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/amazon-dynamodb.svg" alt="DynamoDB" class="w-6 h-6" />
+            <span class="ml-2 text-sm">DynamoDB</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/amazon-rds.svg" alt="RDS" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Amazon RDS</span>
+          </div>
+        </div>
+      </div>
+      <!-- AI & Automation -->
+      <div class="pricing-card bg-[#241A4F] rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-6">AI & Automation</h3>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/openai.svg" alt="OpenAI" class="w-6 h-6" />
+            <span class="ml-2 text-sm">OpenAI</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/deepseek.svg" alt="Deepseek" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Deepseek</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/n8n.svg" alt="N8N" class="w-6 h-6" />
+            <span class="ml-2 text-sm">N8N</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/make-color.svg" alt="Make" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Make</span>
+          </div>
+          <div class="flex items-center bg-[#180C39] rounded-full px-3 py-1.5">
+            <img src="/assets/img/integration/zapier-seeklogo.svg" alt="Zapier" class="w-6 h-6" />
+            <span class="ml-2 text-sm">Zapier</span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="text-center mt-12">
-      <p class="text-gray-400 mb-4">{t('integrations.more')}</p>
-      <a href="/integrations" class="text-primary hover:underline">
-        {t('integrations.viewAll')} →
-      </a>
+    <div class="text-center mt-5">
+      <a href="#" class="gradient-bg text-white px-8 py-3 rounded-button font-medium hover:opacity-90 transition-opacity">Get Started</a>
     </div>
   </div>
 </section>
-
-<style>
-  .gradient-text {
-    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-</style>

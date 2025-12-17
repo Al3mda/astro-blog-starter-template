@@ -1,38 +1,22 @@
 ---
-import { getTranslation } from '@/i18n/utils';
 import PricingPlans from './PricingPlans.astro';
+import ComparisonTable from './ComparisonTable.astro';
+import Addons from './Addons.astro';
 import ExpertSupport from './ExpertSupport.astro';
-
-interface Props {
-  lang: 'en' | 'ar';
-}
-
-const { lang } = Astro.props;
-const t = getTranslation(lang);
 ---
 
 <section id="pricing" class="py-20 relative">
   <div class="container mx-auto px-4">
+    <!-- Header -->
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        {t('pricing.title.prefix')} <span class="gradient-text">{t('pricing.title.highlight')}</span>
+        Start Free – <span class="gradient-text">Scale with Power</span>
       </h2>
       <p class="text-gray-300 max-w-2xl mx-auto">
-        {t('pricing.subtitle')}
+        Flexible pricing that grows with you. Add credits as needed, or let experts handle everything.
       </p>
     </div>
-    
-    <PricingPlans lang={lang} />
-  </div>
-</section>
 
-<ExpertSupport lang={lang} />
+    <PricingPlans />
+    <ComparisonTable />
 
-<style>
-  .gradient-text {
-    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-</style>

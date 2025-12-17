@@ -1,77 +1,63 @@
 ---
-import { getTranslation } from '@/i18n/utils';
-
-interface Props {
-  lang: 'en' | 'ar';
-}
-
-const { lang } = Astro.props;
-const t = getTranslation(lang);
-
-const channels = [
-  {
-    name: 'WhatsApp',
-    icon: 'ri-whatsapp-fill',
-    color: '#25D366',
-    description: t('channels.whatsapp.desc')
-  },
-  {
-    name: 'Facebook Messenger',
-    icon: 'ri-facebook-circle-fill',
-    color: '#0084FF',
-    description: t('channels.facebook.desc')
-  },
-  {
-    name: 'Instagram',
-    icon: 'ri-instagram-fill',
-    color: '#E1306C',
-    description: t('channels.instagram.desc')
-  },
-  {
-    name: 'Telegram',
-    icon: 'ri-telegram-fill',
-    color: '#0088CC',
-    description: t('channels.telegram.desc')
-  },
-  {
-    name: 'Web Chat',
-    icon: 'ri-chat-3-fill',
-    color: '#FFB62F',
-    description: t('channels.webchat.desc')
-  }
-];
+// Channels section component
 ---
 
-<section class="py-20 bg-[#1D1245]">
+<section id="channels" class="py-20 relative">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        {t('channels.title.prefix')} <span class="gradient-text">{t('channels.title.highlight')}</span>
+        Connect all your <span class="gradient-text">messaging channels</span>
       </h2>
       <p class="text-gray-300 max-w-2xl mx-auto">
-        {t('channels.subtitle')}
+        One AI chatbot for WhatsApp, Instagram, Facebook, Telegram, and your website. Manage every conversation from a single inbox.
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
-      {channels.map((channel) => (
-        <div class="flex flex-col items-center text-center group">
-          <div class="w-20 h-20 rounded-full bg-[#241A4F] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300" style={`border: 2px solid ${channel.color}30;`}>
-            <i class={`${channel.icon} text-4xl`} style={`color: ${channel.color};`}></i>
-          </div>
-          <h3 class="font-semibold mb-2">{channel.name}</h3>
-          <p class="text-sm text-gray-400">{channel.description}</p>
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="channel-card whatsapp bg-[#241A4F] rounded-xl p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center mx-auto mb-4 overflow-hidden circle">
+          <img src="/assets/img/channels/whatsapp.webp" alt="WhatsApp Logo" width="64" height="64" class="w-full h-full object-contain">
         </div>
-      ))}
+        <h3 class="text-xl font-semibold mb-2">WhatsApp</h3>
+        <p class="text-gray-400 text-sm mb-4 min-h-16">Automated replies and campaigns with the official WhatsApp Business API</p>
+        <button class="w-full py-2 px-4 border border-[#25D366]/30 text-[#25D366] rounded-button hover:bg-[#25D366]/10 transition-colors whitespace-nowrap">Connect</button>
+      </div>
+
+      <div class="channel-card messenger bg-[#241A4F] rounded-xl p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-[#0084FF]/10 flex items-center justify-center mx-auto mb-4 overflow-hidden circle">
+          <img src="/assets/img/channels/facebook.webp" alt="Facebook Logo" width="64" height="64" class="w-full h-full object-contain">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Facebook</h3>
+        <p class="text-gray-400 text-sm mb-4 min-h-16">Handle Facebook Page and Messenger conversations in one place</p>
+        <button class="w-full py-2 px-4 border border-[#0084FF]/30 text-[#0084FF] rounded-button hover:bg-[#0084FF]/10 transition-colors whitespace-nowrap">Connect</button>
+      </div>
+
+      <div class="channel-card instagram bg-[#241A4F] rounded-xl p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-[#E1306C]/10 flex items-center justify-center mx-auto mb-4 overflow-hidden circle">
+          <img src="/assets/img/channels/instagram.webp" alt="Instagram Logo" width="64" height="64" class="w-full h-full object-contain">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Instagram</h3>
+        <p class="text-gray-400 text-sm mb-4 min-h-16">Answer Instagram DMs and story replies automatically</p>
+        <button class="w-full py-2 px-4 border border-[#E1306C]/30 text-[#E1306C] rounded-button hover:bg-[#E1306C]/10 transition-colors whitespace-nowrap">Connect</button>
+      </div>
+
+      <div class="channel-card telegram bg-[#241A4F] rounded-xl p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-[#0088CC]/10 flex items-center justify-center mx-auto mb-4 overflow-hidden circle">
+          <img src="/assets/img/channels/telegram.webp" alt="Telegram Logo" width="64" height="64" class="w-full h-full object-contain">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Telegram</h3>
+        <p class="text-gray-400 text-sm mb-4 min-h-16">Support Telegram users with bots and broadcast messages</p>
+        <button class="w-full py-2 px-4 border border-[#0088CC]/30 text-[#0088CC] rounded-button hover:bg-[#0088CC]/10 transition-colors whitespace-nowrap">Connect</button>
+      </div>
+
+      <div class="channel-card webchat bg-[#241A4F] rounded-xl p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 overflow-hidden circle">
+          <img src="/assets/img/channels/webchat.webp" alt="Web Chat Logo" width="64" height="64" class="w-full h-full object-contain">
+        </div>
+        <h3 class="text-xl font-semibold mb-2">WebChat</h3>
+        <p class="text-gray-400 text-sm mb-4 min-h-16">Add a fully branded chat widget to any page on your site</p>
+        <button class="w-full py-2 px-4 border border-primary/30 text-primary rounded-button hover:bg-primary/10 transition-colors whitespace-nowrap">Connect</button>
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  .gradient-text {
-    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-</style>
