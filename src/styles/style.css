@@ -110,6 +110,15 @@ html[dir="rtl"] body {
   box-shadow: 0 0 20px rgba(255, 182, 47, 0.2);
 }
 
+.border-\[\#FFB62F\] {
+    border-color: #FFB62F !important;
+}
+
+.text-dark {
+    --tw-text-opacity: 1;
+    color: rgb(24 12 57 / var(--tw-text-opacity, 1));
+}
+
 /* ============================================
    MOBILE MENU
    ============================================ */
