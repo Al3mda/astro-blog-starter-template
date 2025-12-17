@@ -13,12 +13,11 @@ const t = getTranslation(locale);
 const isRTL = locale === 'ar';
 ---
 
-<section id="hero" class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center">
+  <!-- Background with gradient overlay -->background: url(../img/hero-bg.jpeg) center center / cover no-repeat;
+<section id="hero" class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center"  style={`background: url(${hero.src})center center / cover no-repeat; min-height: 600px;; `}>
   <!-- Background with gradient overlay -->
-  <div 
-    class="absolute inset-0 hero-section-bg via-dark-secondary to-dark opacity-90"
-    style={`background-image: url(${hero.src}); background-size: cover; background-position: center;`}
-  ></div>
+}
+  <div class="absolute inset-0 via-dark-secondary to-dark opacity-90"></div>
   
   <!-- Animated particles (optional) -->
   <div class="absolute inset-0 opacity-30">
@@ -60,7 +59,7 @@ const isRTL = locale === 'ar';
       <!-- Right Column: Chat Simulation -->
       <div class="w-full lg:w-1/2 flex justify-center">
         <div class="max-w-md w-full">
-          <div class="bg-[#180C39]-secondary/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 shadow-2xl">
+          <div class="p-6">
             <div class="space-y-4" id="chat-container">
               
               <!-- Message 1: Store Owner -->
