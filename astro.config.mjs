@@ -16,14 +16,15 @@ export default defineConfig({
   integrations: [
     i18n({
       locales: {
-        "en-US": "en-US",
-        "ar-SA": "ar-SA",
+        "en": "en",
+        "ar": "ar",
       },
-      defaultLocale: "en-US",
+      defaultLocale: "en",
+      exclude: ["pages/rss.xml.js"],
     }),
     mdx(),
     sitemap({
-      filter: filterSitemapByDefaultLocale({ defaultLocale: "en-US" }),
+      filter: filterSitemapByDefaultLocale({ defaultLocale: "en" }),
     }),
     robotsTxt({
       sitemaps: [

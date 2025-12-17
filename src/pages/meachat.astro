@@ -6,7 +6,7 @@ import { getLocale } from "astro-i18n-aut";
 import { getTranslation } from '../i18n/meachat.ts';
 import MeaChatLayout from '../layouts/MeaChatLayout.astro';
 import Header from '../components/meachat/Header.astro';
-import Hero from '../components/meachat/sections/Hero.astro';
+import Hero from '../components/meachat/Hero.astro';
 import Footer from '../components/meachat/Footer.astro';
 
 const locale = getLocale(Astro.url);
@@ -27,7 +27,7 @@ const t = getTranslation(locale);
       </div>
     </section>
     
-    <section id="integrations" class="py-20 bg-dark-secondary">
+    <section id="integrations" class="py-20 bg-[#180C39]-secondary">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-4xl font-bold mb-4">{t.integrations.title}</h2>
         <p class="text-gray-300">{t.integrations.subtitle}</p>
@@ -45,7 +45,7 @@ const t = getTranslation(locale);
       </div>
     </section>
     
-    <section id="pricing" class="py-20 bg-dark-secondary">
+    <section id="pricing" class="py-20 bg-[#180C39]-secondary">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-4xl font-bold mb-4">{t.pricing.title}</h2>
         <p class="text-gray-300">{t.pricing.subtitle}</p>

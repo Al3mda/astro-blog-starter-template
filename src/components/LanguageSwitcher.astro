@@ -1,10 +1,10 @@
 ---
 import { getLocale } from "astro-i18n-aut";
 
-const rawLocale = (getLocale(Astro.url) || "en-US").toLowerCase();
+const locale = getLocale(Astro.url) || "en";
 
-// Remove any leading locale segment (ar | ar-sa | en | en-us) from the pathname
-const stripped = Astro.url.pathname.replace(/^\/(ar|ar-sa|en|en-us)(?=\/|$)/i, "");
+// Remove any leading locale segment from the pathname
+const stripped = Astro.url.pathname.replace(/^\/(ar|en)(?=\/|$)/i, "");
 
 const withTrailingSlash = (p: string) => {
   if (!p || p === "/") return "/";
@@ -17,8 +17,8 @@ const base = withTrailingSlash(stripped);
 const enLink = base;
 const arLink = `/ar${base}`;
 
-const isEn = rawLocale.startsWith("en");
-const isAr = rawLocale.startsWith("ar");
+const isEn = locale === "en";
+const isAr = locale === "ar";
 ---
 <div class="language-switcher">
   {isEn ? (

@@ -8,14 +8,13 @@ import Button from '../ui/Button.astro';
 import logoLight from '../../assets/img/logo/MeaChat-Light.svg';
 import LanguageSwitcher from '../LanguageSwitcher.astro';
 
-const locale = getLocale(Astro.url);
+const locale = getLocale(Astro.url) || 'en';
 const t = getTranslation(locale);
 const rtl = isRTL(locale);
-const localeStr = (locale || 'en-US').toLowerCase();
-const isAr = localeStr.startsWith('ar');
-const homeHref = isAr ? '/ar/' : '/';
+const homeHref = locale === 'ar' ? '/ar/' : '/';
+---
 
-<header class="fixed top-0 left-0 right-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
+<header class="fixed top-0 left-0 right-0 z-40 bg-[#180C39] bg-opacity-90 backdrop-blur-sm">
   <div class="container mx-auto px-4 py-4 flex items-center justify-between">
     
     <!-- Logo -->
