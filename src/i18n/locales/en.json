@@ -1,0 +1,242 @@
+{
+  "features": {
+    "title": {
+      "prefix": "Powerful",
+      "highlight": "Features"
+    },
+    "subtitle": "Everything you need to build, manage and scale conversational experiences across all channels.",
+    "dragDrop": {
+      "title": "Drag & Drop Flow Builder",
+      "desc": "Create complex conversation flows without coding",
+      "demo": "Visual flow builder interface"
+    },
+    "aiReplies": {
+      "title": "AI Replies",
+      "desc": "Smart responses based on user intent",
+      "userLabel": "User Message",
+      "userMsg": "Do you have this shirt in blue?",
+      "aiLabel": "AI Response",
+      "aiMsg": "Yes, we have it in stock!"
+    },
+    "sharedInbox": {
+      "title": "Shared Inbox",
+      "desc": "Collaborate with your team on conversations",
+      "demo": "Team inbox interface"
+    },
+    "catalog": {
+      "title": "WhatsApp Catalog",
+      "desc": "Sell products directly in chat",
+      "demo": "Product catalog display"
+    },
+    "webhook": {
+      "title": "Webhook Flow",
+      "desc": "Connect to external systems and APIs",
+      "demo": "API integration interface"
+    },
+    "smartForm": {
+      "title": "Smart Form",
+      "desc": "Collect information with conversational forms",
+      "demo": "Form builder interface"
+    }
+  },
+  "pricing": {
+    "title": {
+      "prefix": "Start Free–",
+      "highlight": "Scale with Power"
+    },
+    "subtitle": "Flexible pricing that grows with you. Add credits as needed, or let experts handle everything.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "save20": "Save 20%",
+    "mostPopular": "Most Popular",
+    "billedYearly": "Billed yearly (save 20%)",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "desc": "For small teams ready to scale.",
+        "f1": "Unlimited contacts",
+        "f2": "50K messages included",
+        "f3": "1M AI tokens included",
+        "button": "Choose Starter",
+        "note": "Best for early growth"
+      },
+      "pro": {
+        "name": "Professional",
+        "desc": "For growing teams with AI needs.",
+        "f1": "Unlimited contacts",
+        "f2": "3 team members",
+        "f3": "5M AI tokens + advanced bot",
+        "f4": "Advanced automation",
+        "button": "Go Professional",
+        "note": "AI + automation included"
+      },
+      "elite": {
+        "name": "Elite",
+        "desc": "For high-volume operations.",
+        "customPrice": "Custom",
+        "f1": "Dedicated manager",
+        "f2": "24/7 premium support",
+        "f3": "Custom AI training",
+        "f4": "API + custom integrations",
+        "button": "Let's Talk",
+        "note": "Enterprise-grade solution"
+      },
+      "free": {
+        "name": "Free",
+        "desc": "Perfect to test with real customers.",
+        "forever": "Forever free",
+        "f1": "Up to 1K contacts",
+        "f2": "1K messages/month",
+        "f3": "Buy credits as needed",
+        "button": "Start Free",
+        "note": "Validate before upgrading"
+      }
+    }
+  },
+  "expertSupport": {
+    "title": {
+      "prefix": "Let",
+      "highlight": "Experts Handle It"
+    },
+    "subtitle": "Don't have time to build? Our team sets up, optimizes, and manages your chatbot for you.",
+    "bestValue": "Best Value",
+    "basic": {
+      "title": "Basic Setup",
+      "period": "One-time",
+      "feature1": "1 bot setup & configuration",
+      "feature2": "3 conversation flows",
+      "feature3": "1 channel integration",
+      "feature4": "Basic testing & launch",
+      "feature5": "2 weeks support",
+      "button": "Get Started"
+    },
+    "pro": {
+      "title": "Professional Setup",
+      "period": "One-time",
+      "feature1": "Complete bot setup",
+      "feature2": "Up to 10 conversation flows",
+      "feature3": "3 channel integrations",
+      "feature4": "AI training & optimization",
+      "feature5": "CRM integration (1 tool)",
+      "feature6": "1 month support",
+      "button": "Get Pro Setup"
+    },
+    "managed": {
+      "title": "Monthly Management",
+      "period": "Per month",
+      "feature1": "Ongoing bot management",
+      "feature2": "Monthly updates & tweaks",
+      "feature3": "AI performance optimization",
+      "feature4": "Analytics & reporting",
+      "feature5": "Priority support",
+      "button": "Subscribe"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "Can I buy extra messages without upgrading my plan?",
+      "answer": "Yes! All plans including Free can purchase message credits as add-ons. Buy what you need, when you need it."
+    },
+    "q2": {
+      "question": "Do AI tokens expire?",
+      "answer": "No. AI tokens are one-time purchases with no expiry. Use them at your own pace."
+    },
+    "q3": {
+      "question": "What's included in Expert Setup service?",
+      "answer": "Our team builds your chatbot flows, trains the AI, integrates channels, and tests everything before launch."
+    },
+    "q4": {
+      "question": "Can I cancel my subscription anytime?",
+      "answer": "Yes. Monthly plans can be cancelled anytime with no penalties."
+    },
+    "q5": {
+      "question": "What happens if I exceed my message limit?",
+      "answer": "Your bot continues working but won't send new messages until you top up credits or wait for the next billing cycle."
+    },
+    "q6": {
+      "question": "How does the free plan work?",
+      "answer": "The Free plan gives you 1K contacts and 1K messages per month to test MeaChat with real customers."
+    },
+    "q7": {
+      "question": "Do I need technical skills to use MeaChat?",
+      "answer": "Not at all! MeaChat is designed to be user-friendly with a drag-and-drop flow builder."
+    },
+    "q8": {
+      "question": "Is MeaChat compliant with privacy regulations?",
+      "answer": "Absolutely! MeaChat is fully compliant with GDPR, CCPA, and other major privacy regulations."
+    },
+    "q9": {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept all major credit cards, PayPal, and bank transfers for annual plans."
+    }
+  },
+  "testimonials": {
+    "title": {
+      "prefix": "Loved by",
+      "highlight": "Businesses Worldwide"
+    },
+    "subtitle": "See what our customers have to say about MeaChat",
+    "t1": {
+      "name": "Sarah Johnson",
+      "role": "Marketing Director",
+      "company": "TechStart Inc",
+      "content": "MeaChat transformed how we handle customer support. Response time dropped by 80%!"
+    },
+    "t2": {
+      "name": "Ahmed Al-Rashid",
+      "role": "CEO",
+      "company": "Gulf Retail",
+      "content": "The AI responses are incredibly accurate. Our customers love the instant support."
+    },
+    "t3": {
+      "name": "Maria Garcia",
+      "role": "Operations Manager",
+      "company": "E-commerce Pro",
+      "content": "Setup was surprisingly easy. We were live in less than a week!"
+    }
+  },
+  "channels": {
+    "title": {
+      "prefix": "Connect All Your",
+      "highlight": "Channels"
+    },
+    "subtitle": "Unify conversations across WhatsApp, Instagram, Facebook, Telegram, and your website",
+    "whatsapp": {
+      "desc": "Business API"
+    },
+    "facebook": {
+      "desc": "Messenger"
+    },
+    "instagram": {
+      "desc": "Direct Messages"
+    },
+    "telegram": {
+      "desc": "Bot API"
+    },
+    "webchat": {
+      "desc": "Website Widget"
+    }
+  },
+  "integrations": {
+    "title": {
+      "prefix": "Seamless",
+      "highlight": "Integrations"
+    },
+    "subtitle": "Connect with your favorite tools and platforms",
+    "more": "And 50+ more integrations",
+    "viewAll": "View all integrations"
+  },
+  "cta": {
+    "title": {
+      "prefix": "Ready to",
+      "highlight": "Get Started?"
+    },
+    "subtitle": "Join thousands of businesses using MeaChat to automate customer conversations",
+    "primaryButton": "Start Free Trial",
+    "secondaryButton": "Schedule Demo",
+    "feature1": "Free 14-day trial",
+    "feature2": "No credit card required",
+    "feature3": "Cancel anytime"
+  }
+}

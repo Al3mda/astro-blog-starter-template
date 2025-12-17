@@ -1,0 +1,50 @@
+---
+import { getTranslation } from '@/i18n/utils';
+import Button from './ui/Button.astro';
+
+interface Props {
+  lang: 'en' | 'ar';
+}
+
+const { lang } = Astro.props;
+const t = getTranslation(lang);
+---
+
+<section class="py-20 bg-gradient-to-b from-[#1D1245] to-dark">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">
+        {t('cta.title.prefix')} <span class="gradient-text">{t('cta.title.highlight')}</span>
+      </h2>
+      <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+        {t('cta.subtitle')}
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+        <Button variant="primary" size="lg" href="/signup">
+          {t('cta.primaryButton')}
+        </Button>
+        <Button variant="outline" size="lg" href="/demo">
+          {t('cta.secondaryButton')}
+        </Button>
+      </div>
+      
+      <p class="text-sm text-gray-400">
+        <i class="ri-check-line text-primary"></i> {t('cta.feature1')}
+        <span class="mx-2">•</span>
+        <i class="ri-check-line text-primary"></i> {t('cta.feature2')}
+        <span class="mx-2">•</span>
+        <i class="ri-check-line text-primary"></i> {t('cta.feature3')}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>

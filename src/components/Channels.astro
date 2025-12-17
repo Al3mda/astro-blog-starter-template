@@ -1,0 +1,77 @@
+---
+import { getTranslation } from '@/i18n/utils';
+
+interface Props {
+  lang: 'en' | 'ar';
+}
+
+const { lang } = Astro.props;
+const t = getTranslation(lang);
+
+const channels = [
+  {
+    name: 'WhatsApp',
+    icon: 'ri-whatsapp-fill',
+    color: '#25D366',
+    description: t('channels.whatsapp.desc')
+  },
+  {
+    name: 'Facebook Messenger',
+    icon: 'ri-facebook-circle-fill',
+    color: '#0084FF',
+    description: t('channels.facebook.desc')
+  },
+  {
+    name: 'Instagram',
+    icon: 'ri-instagram-fill',
+    color: '#E1306C',
+    description: t('channels.instagram.desc')
+  },
+  {
+    name: 'Telegram',
+    icon: 'ri-telegram-fill',
+    color: '#0088CC',
+    description: t('channels.telegram.desc')
+  },
+  {
+    name: 'Web Chat',
+    icon: 'ri-chat-3-fill',
+    color: '#FFB62F',
+    description: t('channels.webchat.desc')
+  }
+];
+---
+
+<section class="py-20 bg-[#1D1245]">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        {t('channels.title.prefix')} <span class="gradient-text">{t('channels.title.highlight')}</span>
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">
+        {t('channels.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
+      {channels.map((channel) => (
+        <div class="flex flex-col items-center text-center group">
+          <div class="w-20 h-20 rounded-full bg-[#241A4F] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300" style={`border: 2px solid ${channel.color}30;`}>
+            <i class={`${channel.icon} text-4xl`} style={`color: ${channel.color};`}></i>
+          </div>
+          <h3 class="font-semibold mb-2">{channel.name}</h3>
+          <p class="text-sm text-gray-400">{channel.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+import { getTranslation } from '@/i18n/utils';
+
+interface Props {
+  lang: 'en' | 'ar';
+}
+
+const { lang } = Astro.props;
+const t = getTranslation(lang);
+
+const features = [
+  {
+    icon: 'ri-drag-move-fill',
+    titleKey: 'features.dragDrop.title',
+    descKey: 'features.dragDrop.desc',
+    demoText: t('features.dragDrop.demo')
+  },
+  {
+    icon: 'ri-robot-fill',
+    titleKey: 'features.aiReplies.title',
+    descKey: 'features.aiReplies.desc',
+    userMessage: t('features.aiReplies.userMsg'),
+    aiResponse: t('features.aiReplies.aiMsg')
+  },
+  {
+    icon: 'ri-inbox-archive-fill',
+    titleKey: 'features.sharedInbox.title',
+    descKey: 'features.sharedInbox.desc',
+    demoText: t('features.sharedInbox.demo')
+  },
+  {
+    icon: 'ri-store-2-fill',
+    titleKey: 'features.catalog.title',
+    descKey: 'features.catalog.desc',
+    demoText: t('features.catalog.demo')
+  },
+  {
+    icon: 'ri-code-s-slash-fill',
+    titleKey: 'features.webhook.title',
+    descKey: 'features.webhook.desc',
+    demoText: t('features.webhook.demo')
+  },
+  {
+    icon: 'ri-file-list-3-fill',
+    titleKey: 'features.smartForm.title',
+    descKey: 'features.smartForm.desc',
+    demoText: t('features.smartForm.demo')
+  }
+];
+---
+
+<section id="features" class="py-20 bg-gradient-to-b from-dark to-darker">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        {t('features.title.prefix')} <span class="gradient-text">{t('features.title.highlight')}</span>
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">
+        {t('features.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {features.map((feature, index) => (
+        <div class="feature-card bg-[#241A4F] rounded-xl p-6 hover:transform hover:scale-105 transition-all duration-300">
+          <div class="flex items-start mb-4">
+            <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4 flex-shrink-0">
+              <i class={`${feature.icon} text-white text-2xl`}></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">{t(feature.titleKey)}</h3>
+              <p class="text-gray-400">{t(feature.descKey)}</p>
+            </div>
+          </div>
+          
+          <div class="bg-[#180C39] rounded-lg p-4 min-h-[16rem] flex items-center justify-center">
+            {index === 1 && feature.userMessage && feature.aiResponse ? (
+              <div class="w-full space-y-4">
+                <div>
+                  <p class="text-xs text-gray-400 mb-2">{t('features.aiReplies.userLabel')}</p>
+                  <div class="bg-[#241A4F] rounded-lg p-3 text-sm">
+                    "{feature.userMessage}"
+                  </div>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-400 mb-2">{t('features.aiReplies.aiLabel')}</p>
+                  <div class="bg-gradient-to-r from-primary to-secondary rounded-lg p-3 text-sm">
+                    {feature.aiResponse}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p class="text-center text-gray-400">{feature.demoText}</p>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+  }
+
+  .feature-card {
+    border: 1px solid rgba(255, 182, 47, 0.1);
+  }
+
+  .feature-card:hover {
+    border-color: rgba(255, 182, 47, 0.3);
+    box-shadow: 0 10px 40px rgba(255, 182, 47, 0.1);
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import { getTranslation } from '@/i18n/utils';
+
+interface Props {
+  lang: 'en' | 'ar';
+}
+
+const { lang } = Astro.props;
+const t = getTranslation(lang);
+
+const integrations = [
+  { name: 'Shopify', icon: 'ri-shopping-bag-fill', color: '#96BF48' },
+  { name: 'WooCommerce', icon: 'ri-shopping-cart-fill', color: '#96588A' },
+  { name: 'Zapier', icon: 'ri-flashlight-fill', color: '#FF4A00' },
+  { name: 'Google Sheets', icon: 'ri-file-excel-fill', color: '#34A853' },
+  { name: 'Stripe', icon: 'ri-bank-card-fill', color: '#635BFF' },
+  { name: 'Calendly', icon: 'ri-calendar-check-fill', color: '#006BFF' },
+  { name: 'Slack', icon: 'ri-slack-fill', color: '#4A154B' },
+  { name: 'HubSpot', icon: 'ri-customer-service-2-fill', color: '#FF7A59' }
+];
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        {t('integrations.title.prefix')} <span class="gradient-text">{t('integrations.title.highlight')}</span>
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">
+        {t('integrations.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 max-w-6xl mx-auto">
+      {integrations.map((integration) => (
+        <div class="flex flex-col items-center group">
+          <div class="w-16 h-16 rounded-xl bg-[#241A4F] flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 border border-primary/10 group-hover:border-primary/30">
+            <i class={`${integration.icon} text-3xl`} style={`color: ${integration.color};`}></i>
+          </div>
+          <p class="text-xs text-gray-400 text-center">{integration.name}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="text-gray-400 mb-4">{t('integrations.more')}</p>
+      <a href="/integrations" class="text-primary hover:underline">
+        {t('integrations.viewAll')} →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>

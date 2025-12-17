@@ -1,0 +1,100 @@
+---
+import { getTranslation } from '@/i18n/utils';
+
+interface Props {
+  lang: 'en' | 'ar';
+}
+
+const { lang } = Astro.props;
+const t = getTranslation(lang);
+
+const faqs = Array.from({ length: 9 }, (_, i) => ({
+  question: t(`faq.q${i + 1}.question`),
+  answer: t(`faq.q${i + 1}.answer`)
+}));
+---
+
+<section class="py-16 bg-[#1D1245]">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <h2 class="text-3xl font-bold text-center mb-12">
+      <span class="gradient-text">{t('faq.title')}</span>
+    </h2>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="faq-item bg-[#241A4F] rounded-xl p-6">
+          <div class="faq-question flex items-center justify-between cursor-pointer" data-index={index}>
+            <h3 class="text-xl font-semibold flex items-center">
+              <i class="ri-question-line text-primary mr-2"></i>
+              {faq.question}
+            </h3>
+            <i class="faq-icon ri-add-line text-2xl"></i>
+          </div>
+          <div class="faq-answer pt-4 hidden">
+            <p class="text-gray-400 pl-8">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      
+      question.addEventListener('click', () => {
+        const isOpen = !answer.classList.contains('hidden');
+        
+        if (isOpen) {
+          answer.classList.add('hidden');
+          icon.classList.remove('ri-subtract-line');
+          icon.classList.add('ri-add-line');
+        } else {
+          answer.classList.remove('hidden');
+          icon.classList.remove('ri-add-line');
+          icon.classList.add('ri-subtract-line');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .faq-question {
+    transition: all 0.3s ease;
+  }
+
+  .faq-question:hover {
+    color: #FFB62F;
+  }
+
+  .faq-answer {
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

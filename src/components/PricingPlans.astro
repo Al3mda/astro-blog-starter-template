@@ -1,0 +1,203 @@
+---
+import { getTranslation } from '@/i18n/utils';
+import Button from './ui/Button.astro';
+
+interface Props {
+  lang: 'en' | 'ar';
+}
+
+const { lang } = Astro.props;
+const t = getTranslation(lang);
+
+const plans = [
+  {
+    id: 'starter',
+    name: t('pricing.plans.starter.name'),
+    description: t('pricing.plans.starter.desc'),
+    monthlyPrice: 19,
+    yearlyPrice: 15,
+    features: [
+      t('pricing.plans.starter.f1'),
+      t('pricing.plans.starter.f2'),
+      t('pricing.plans.starter.f3')
+    ],
+    channels: ['whatsapp', 'facebook', 'instagram', 'telegram'],
+    buttonText: t('pricing.plans.starter.button'),
+    note: t('pricing.plans.starter.note')
+  },
+  {
+    id: 'professional',
+    name: t('pricing.plans.pro.name'),
+    description: t('pricing.plans.pro.desc'),
+    monthlyPrice: 49,
+    yearlyPrice: 39,
+    features: [
+      t('pricing.plans.pro.f1'),
+      t('pricing.plans.pro.f2'),
+      t('pricing.plans.pro.f3'),
+      t('pricing.plans.pro.f4')
+    ],
+    channels: ['whatsapp', 'facebook', 'instagram', 'telegram', 'webchat'],
+    buttonText: t('pricing.plans.pro.button'),
+    note: t('pricing.plans.pro.note'),
+    popular: true
+  },
+  {
+    id: 'elite',
+    name: t('pricing.plans.elite.name'),
+    description: t('pricing.plans.elite.desc'),
+    price: t('pricing.plans.elite.customPrice'),
+    features: [
+      t('pricing.plans.elite.f1'),
+      t('pricing.plans.elite.f2'),
+      t('pricing.plans.elite.f3'),
+      t('pricing.plans.elite.f4')
+    ],
+    channels: ['whatsapp', 'facebook', 'instagram', 'telegram'],
+    buttonText: t('pricing.plans.elite.button'),
+    note: t('pricing.plans.elite.note')
+  }
+];
+
+const channelIcons = {
+  whatsapp: { icon: 'ri-whatsapp-fill', color: '#25D366' },
+  facebook: { icon: 'ri-facebook-circle-fill', color: '#1877F3' },
+  instagram: { icon: 'ri-instagram-fill', color: '#E1306C' },
+  telegram: { icon: 'ri-telegram-fill', color: '#0088CC' },
+  webchat: { icon: 'ri-chat-smile-3-fill', color: '#a29bb5' }
+};
+---
+
+<div class="max-w-4xl mx-auto mb-12">
+  <div class="flex justify-center mb-8">
+    <div class="bg-[#241A4F] rounded-full p-1 flex">
+      <button class="pricing-period-btn px-6 py-2 rounded-full text-gray-400 whitespace-nowrap" data-period="monthly">
+        {t('pricing.monthly')}
+      </button>
+      <button class="pricing-period-btn px-6 py-2 rounded-full text-white whitespace-nowrap active" data-period="yearly">
+        {t('pricing.yearly')}
+        <span class="ml-2 bg-primary bg-opacity-10 text-primary text-sm px-2 py-1 rounded-full">
+          {t('pricing.save20')}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="pricing-cards" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+  {plans.map((plan) => (
+    <div class={`pricing-card bg-[#241A4F] rounded-xl p-6 ${plan.popular ? 'border-2 border-primary relative' : ''}`}>
+      {plan.popular && (
+        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-dark px-4 py-1 rounded-full text-sm font-medium">
+          {t('pricing.mostPopular')}
+        </div>
+      )}
+      
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-2">{plan.name}</h3>
+        <p class="text-gray-400 text-sm">{plan.description}</p>
+      </div>
+
+      <div class="mb-6">
+        {plan.price ? (
+          <p class="text-3xl font-bold">{plan.price}</p>
+        ) : (
+          <>
+            <p class="text-3xl font-bold">
+              $<span class="price-value" data-monthly={plan.monthlyPrice} data-yearly={plan.yearlyPrice}>{plan.yearlyPrice}</span>
+              <span class="text-sm font-normal text-gray-400">/month</span>
+            </p>
+            <p class="text-sm text-gray-400 billing-text">{t('pricing.billedYearly')}</p>
+          </>
+        )}
+      </div>
+
+      <div class="mb-6">
+        <ul class="space-y-3">
+          {plan.features.map((feature) => (
+            <li class="flex items-start">
+              <i class="ri-infinity-line text-primary mr-2 mt-0.5"></i>
+              <span class="text-sm">{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="flex justify-center gap-3 mb-6">
+        {plan.channels.map((channel) => (
+          <i class={`${channelIcons[channel].icon} text-3xl`} style={`color: ${channelIcons[channel].color};`}></i>
+        ))}
+      </div>
+
+      <button class={`w-full py-3 rounded-button whitespace-nowrap transition ${plan.popular ? 'gradient-bg text-white hover:opacity-90' : 'border border-white/20 text-white hover:bg-white/5'}`}>
+        {plan.buttonText}
+      </button>
+      <p class="text-center my-4 text-sm">{plan.note}</p>
+    </div>
+  ))}
+</div>
+
+<div class="pricing-card bg-[#241A4F] rounded-xl p-6 mt-8 max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+    <div>
+      <h3 class="text-xl font-semibold mb-2">{t('pricing.plans.free.name')}</h3>
+      <p class="text-gray-400 text-sm">{t('pricing.plans.free.desc')}</p>
+      <p class="text-3xl font-bold mt-4">$0<span class="text-sm font-normal text-gray-400">/month</span></p>
+      <p class="text-sm text-gray-400">{t('pricing.plans.free.forever')}</p>
+    </div>
+    <div class="md:col-span-2">
+      <ul class="grid grid-cols-1 gap-3">
+        <li class="flex items-start"><i class="ri-user-line text-primary mr-2 mt-0.5"></i><span class="text-sm">{t('pricing.plans.free.f1')}</span></li>
+        <li class="flex items-start"><i class="ri-message-2-line text-primary mr-2 mt-0.5"></i><span class="text-sm">{t('pricing.plans.free.f2')}</span></li>
+        <li class="flex items-start"><i class="ri-shopping-bag-line text-primary mr-2 mt-0.5"></i><span class="text-sm">{t('pricing.plans.free.f3')}</span></li>
+      </ul>
+    </div>
+    <div class="text-center">
+      <button class="w-full py-3 border border-white/20 text-white rounded-button hover:bg-white/5 transition-colors whitespace-nowrap">
+        {t('pricing.plans.free.button')}
+      </button>
+      <p class="text-center my-4 text-sm">{t('pricing.plans.free.note')}</p>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.pricing-period-btn');
+    const priceValues = document.querySelectorAll('.price-value');
+    const billingTexts = document.querySelectorAll('.billing-text');
+    
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const period = btn.dataset.period;
+        buttons.forEach(b => b.classList.remove('active', 'text-white'));
+        buttons.forEach(b => b.classList.add('text-gray-400'));
+        btn.classList.add('active', 'text-white');
+        btn.classList.remove('text-gray-400');
+        
+        priceValues.forEach(val => {
+          val.textContent = val.dataset[period];
+        });
+        
+        billingTexts.forEach(text => {
+          text.textContent = period === 'yearly' ? 'Billed yearly (save 20%)' : 'Billed monthly';
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .gradient-bg {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+  }
+
+  .pricing-card {
+    border: 1px solid rgba(255, 182, 47, 0.1);
+  }
+
+  .pricing-period-btn.active {
+    background: linear-gradient(135deg, #FFB62F 0%, #FF6B9D 100%);
+    color: #1a0d3a;
+  }
+</style>
