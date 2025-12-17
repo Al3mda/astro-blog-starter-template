@@ -20,6 +20,7 @@ const arLink = `/ar${base}`;
 const isEn = locale === "en";
 const isAr = locale === "ar";
 ---
+
 <div class="language-switcher">
   {isEn ? (
     <>
@@ -36,15 +37,17 @@ const isAr = locale === "ar";
 
 <style>
   .language-switcher {
-display: flex;
+    display: flex;
     gap: 0.5rem;
     align-items: center;
     background: rgba(255, 182, 47, 0.1);
     padding: 0.5rem 1rem;
     border-radius: 8px;
     border: 1px solid rgba(255, 182, 47, 0.2);
+  }
+
   .language-switcher a {
-color: #fff;
+    color: #fff;
     text-decoration: none;
     opacity: 0.6;
     transition: all 0.3s ease;
@@ -52,13 +55,14 @@ color: #fff;
     border-radius: 6px;
     font-size: 0.875rem;
     font-weight: 500;
+  }
+
   .language-switcher a:hover {
-.language-switcher a:hover {
     opacity: 1;
     background: rgba(255, 182, 47, 0.2);
   }
 
-.language-switcher .active {
+  .language-switcher .active {
     font-weight: 600;
     opacity: 1;
     background: #FFB62F;
