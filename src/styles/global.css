@@ -260,3 +260,24 @@ html[dir="rtl"] .mobile-menu.active {
   opacity: 1;
   visibility: visible;
 }
+
+
+/* ================================
+   Addons Component Styles
+   ================================ */
+
+.gradient-text {
+  background: linear-gradient(135deg, #FFB62F 0%, #FF8C42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pricing-card {
+  transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 182, 47, 0.3);
+}
