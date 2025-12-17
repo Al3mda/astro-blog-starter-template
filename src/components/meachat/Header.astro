@@ -14,13 +14,12 @@ const rtl = isRTL(locale);
 const homeHref = locale === 'ar' ? '/ar/' : '/';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-40 bg-[#180C39] bg-opacity-90 backdrop-blur-sm">
+<!-- Header Component -->
+<header class="fixed top-0 left-0 right-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
   <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-    
-    <!-- Logo -->
     <a href={homeHref} class="flex items-center">
       <img 
-        src={logoLight.src} 
+        src={logoLight.src}
         alt="MeaChat Logo" 
         width="200" 
         height="50" 
@@ -29,43 +28,21 @@ const homeHref = locale === 'ar' ? '/ar/' : '/';
       />
     </a>
     
-    <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-      <a href={homeHref} class="text-white hover:text-[#FFB62F] transition-colors">
-        {t.nav.home}
-      </a>
-      <a href="#features" class="text-white hover:text-[#FFB62F] transition-colors">
-        {t.nav.features}
-      </a>
-      <a href="#channels" class="text-white hover:text-[#FFB62F] transition-colors">
-        {t.nav.channels}
-      </a>
-      <a href="#integrations" class="text-white hover:text-[#FFB62F] transition-colors">
-        {t.nav.integrations}
-      </a>
-      <a href="#pricing" class="text-white hover:text-[#FFB62F] transition-colors">
-        {t.nav.pricing}
-      </a>
-      <a href="#faq" class="text-white hover:text-[#FFB62F] transition-colors">
-        {t.nav.faq}
-      </a>
+      <a href={homeHref} class="text-white hover:text-primary transition-colors">{t.nav.home}</a>
+      <a href="#features" class="text-white hover:text-primary transition-colors">{t.nav.features}</a>
+      <a href="#channels" class="text-white hover:text-primary transition-colors">{t.nav.channels}</a>
+      <a href="#integrations" class="text-white hover:text-primary transition-colors">{t.nav.integrations}</a>
+      <a href="#pricing" class="text-white hover:text-primary transition-colors">{t.nav.pricing}</a>
+      <a href="#faq" class="text-white hover:text-primary transition-colors">{t.nav.faq}</a>
     </nav>
     
-    <!-- Language Switcher + CTA (Desktop) -->
-    <div class="hidden md:flex items-center gap-6">
+    <div class="hidden md:flex items-center gap-4">
       <LanguageSwitcher />
-      <Button href="#pricing" variant="primary">
-        {t.nav.tryFree}
-      </Button>
+      <a href="#pricing" class="gradient-bg text-white px-6 py-2 rounded-button font-medium hover:opacity-90 transition-opacity whitespace-nowrap">{t.nav.tryFree}</a>
     </div>
     
-    <!-- Hamburger Menu (Mobile) -->
-    <button 
-      class="md:hidden hamburger" 
-      id="hamburger" 
-      aria-label="Toggle menu" 
-      aria-expanded="false"
-    >
+    <button class="md:hidden hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span>
       <span></span>
       <span></span>
@@ -76,29 +53,15 @@ const homeHref = locale === 'ar' ? '/ar/' : '/';
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href={homeHref} class="text-xl font-medium text-white mb-6">
-    {t.nav.home}
-  </a>
-  <a href="#features" class="text-xl font-medium text-white mb-6">
-    {t.nav.features}
-  </a>
-  <a href="#channels" class="text-xl font-medium text-white mb-6">
-    {t.nav.channels}
-  </a>
-  <a href="#integrations" class="text-xl font-medium text-white mb-6">
-    {t.nav.integrations}
-  </a>
-  <a href="#pricing" class="text-xl font-medium text-white mb-6">
-    {t.nav.pricing}
-  </a>
-  <a href="#faq" class="text-xl font-medium text-white mb-6">
-    {t.nav.faq}
-  </a>
+  <a href={homeHref} class="text-xl font-medium text-white mb-6">{t.nav.home}</a>
+  <a href="#features" class="text-xl font-medium text-white mb-6">{t.nav.features}</a>
+  <a href="#channels" class="text-xl font-medium text-white mb-6">{t.nav.channels}</a>
+  <a href="#integrations" class="text-xl font-medium text-white mb-6">{t.nav.integrations}</a>
+  <a href="#pricing" class="text-xl font-medium text-white mb-6">{t.nav.pricing}</a>
+  <a href="#faq" class="text-xl font-medium text-white mb-6">{t.nav.faq}</a>
   
-  <Button href="#pricing" variant="primary" class="mt-4 w-full">
-    {t.nav.tryFree}
-  </Button>
-
+  <a href="#pricing" class="gradient-bg text-white px-6 py-3 rounded-button font-medium text-center mt-4 whitespace-nowrap">{t.nav.tryFree}</a>
+  
   <!-- Language Switcher (Mobile) -->
   <div class="mt-6">
     <LanguageSwitcher />
