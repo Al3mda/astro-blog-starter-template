@@ -1,108 +1,208 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { Schema } from 'astro-seo-schema';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// src/pages/index.astro
+// MeaChat Landing Page - Complete
+
 import { getLocale } from "astro-i18n-aut";
+import { getTranslation } from '../i18n/meachat';
+import MeaChatLayout from '../layouts/MeaChatLayout.astro';
+import Header from '../components/meachat/Header.astro';
+import Hero from '../components/meachat/sections/Hero.astro';
+import Footer from '../components/meachat/Footer.astro';
 
 const locale = getLocale(Astro.url);
-
-const content = {
-  en: {
-    title: "🧑‍🚀 Hello, Astronaut!",
-    intro: "Welcome to the official Astro blog starter template. This template serves as a lightweight, minimally-styled starting point for anyone looking to build a personal website, blog, or portfolio with Astro.",
-    config: "This template comes with a few integrations already configured in your astro.config.mjs file. You can customize your setup with Astro Integrations to add tools like Tailwind, React, or Vue to your project.",
-    ideas: "Here are a few ideas on how to get started with the template:",
-    tips: [
-      "Edit this page in src/pages/index.astro",
-      "Edit the site header items in src/components/Header.astro",
-      "Add your name to the footer in src/components/Footer.astro",
-      "Check out the included blog posts in src/content/blog/",
-      "Customize the blog post page layout in src/layouts/BlogPost.astro",
-    ],
-    help: "Have fun! If you get stuck, remember to read the docs or join us on Discord to ask questions.",
-  },
-  ar: {
-    title: "🧑‍🚀 مرحبا برائد الفضاء!",
-    intro: "مرحبا بك في نموذج مدونة Astro الرسمي. يعمل هذا النموذج كنقطة انطلاق خفيفة الوزن وذات نمط بسيط لأي شخص يتطلع إلى بناء موقع ويب شخصي أو مدونة أو محفظة باستخدام Astro.",
-    config: "يتضمن هذا النموذج عدة تكاملات مكونة بالفعل في ملف astro.config.mjs الخاص بك. يمكنك تخصيص الإعداد باستخدام تكاملات Astro لإضافة أدوات مثل Tailwind أو React أو Vue إلى مشروعك.",
-    ideas: "إليك بعض الأفكار حول كيفية البدء بالنموذج:",
-    tips: [
-      "تحرير هذه الصفحة في src/pages/index.astro",
-      "تحرير عناصر رأس الموقع في src/components/Header.astro",
-      "أضف اسمك في التذييل في src/components/Footer.astro",
-      "اطلع على منشورات المدونة المضمنة في src/content/blog/",
-      "تخصيص تخطيط صفحة منشور المدونة في src/layouts/BlogPost.astro",
-    ],
-    help: "استمتع! إذا استعثرت، تذكر قراءة الوثائق أو انضم إلينا في Discord لطرح الأسئلة.",
-  },
-};
-
-const currentContent = content[locale] || content.en;
+const t = getTranslation(locale);
+const isRTL = locale === 'ar';
 ---
 
-<!doctype html>
-<html lang={locale === "ar" ? "ar" : "en"}>
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<Schema
-			item={{
-				'@context': 'https://schema.org',
-				'@type': 'WebSite',
-				name: SITE_TITLE,
-				description: SITE_DESCRIPTION,
-				url: Astro.site?.toString(),
-			}}
-		/>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>{currentContent.title}</h1>
-			<p>
-				{locale === "en" ? (
-					<>
-						Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-						template serves as a lightweight, minimally-styled starting point for anyone looking to build
-						a personal website, blog, or portfolio with Astro.
-					</>
-				) : (
-					<>
-						مرحبا بك في نموذج مدونة <a href="https://astro.build/">Astro</a> الرسمي. يعمل هذا النموذج كنقطة انطلاق خفيفة الوزن وذات نمط بسيط لأي شخص يتطلع إلى بناء موقع ويب شخصي أو مدونة أو محفظة باستخدام Astro.
-					</>
-				)}
-			</p>
-			<p>
-				{locale === "en" ? (
-					<>
-						This template comes with a few integrations already configured in your
-						<code>astro.config.mjs</code> file. You can customize your setup with
-						<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-						React, or Vue to your project.
-					</>
-				) : (
-					<>
-						يتضمن هذا النموذج عدة تكاملات مكونة بالفعل في ملف <code>astro.config.mjs</code> الخاص بك. يمكنك تخصيص الإعداد باستخدام <a href="https://astro.build/integrations">تكاملات Astro</a> لإضافة أدوات مثل Tailwind أو React أو Vue إلى مشروعك.
-					</>
-				)}
-			</p>
-			<p>{currentContent.ideas}</p>
-			<ul>
-				{currentContent.tips.map((tip) => <li>{tip}</li>)}
-			</ul>
-			<p>
-				{locale === "en" ? (
-					<>
-						Have fun! If you get stuck, remember to <a href="https://docs.astro.build/">read the docs</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-					</>
-				) : (
-					<>
-						استمتع! إذا استعثرت، تذكر <a href="https://docs.astro.build/">قراءة الوثائق</a> أو <a href="https://astro.build/chat">انضم إلينا في Discord</a> لطرح الأسئلة.
-					</>
-				)}
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<MeaChatLayout title={t.siteTitle} description={t.siteDescription}>
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <Hero />
+    
+    <!-- Channels Section -->
+    <section id="channels" class="py-20 bg-dark">
+      <div class="container mx-auto px-4">
+        <div class={`text-center mb-12 ${isRTL ? 'rtl' : 'ltr'}`}>
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">{t.channels.title}</h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">{t.channels.subtitle}</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          <div class="channel-card bg-dark-secondary rounded-card p-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/10 flex items-center justify-center">
+              <i class="ri-whatsapp-line text-4xl text-green-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">
+              {locale === 'ar' ? 'واتساب للأعمال' : 'WhatsApp Business'}
+            </h3>
+            <p class="text-gray-400 text-sm">
+              {locale === 'ar' ? 'تواصل مع العملاء على تطبيق المراسلة الأكثر شعبية' : 'Connect with customers on the world\'s most popular messaging app'}
+            </p>
+          </div>
+          
+          <div class="channel-card bg-dark-secondary rounded-card p-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-pink-500/10 flex items-center justify-center">
+              <i class="ri-instagram-line text-4xl text-pink-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">
+              {locale === 'ar' ? 'إنستغرام دايركت' : 'Instagram Direct'}
+            </h3>
+            <p class="text-gray-400 text-sm">
+              {locale === 'ar' ? 'أتمت رسائل إنستغرام وتفاعل مع متابعيك' : 'Automate Instagram DMs and engage with your followers'}
+            </p>
+          </div>
+          
+          <div class="channel-card bg-dark-secondary rounded-card p-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-500/10 flex items-center justify-center">
+              <i class="ri-messenger-line text-4xl text-blue-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">
+              {locale === 'ar' ? 'فيسبوك ماسنجر' : 'Facebook Messenger'}
+            </h3>
+            <p class="text-gray-400 text-sm">
+              {locale === 'ar' ? 'أنشئ روبوتات دردشة لفيسبوك ماسنجر' : 'Build chatbots for Facebook Messenger'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Integrations -->
+    <section id="integrations" class="py-20 bg-dark-secondary">
+      <div class="container mx-auto px-4">
+        <div class={`text-center mb-12 ${isRTL ? 'rtl' : 'ltr'}`}>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">{t.integrations.title}</h2>
+          <p class="text-lg text-gray-300">{t.integrations.subtitle}</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8 mt-12">
+          <div class="w-32 h-16 bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="text-gray-400 font-semibold">Stripe</span>
+          </div>
+          <div class="w-32 h-16 bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="text-gray-400 font-semibold">Mailchimp</span>
+          </div>
+          <div class="w-32 h-16 bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="text-gray-400 font-semibold">Shopify</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Features -->
+    <section id="features" class="py-20 bg-dark">
+      <div class="container mx-auto px-4">
+        <div class={`text-center mb-12 ${isRTL ? 'rtl' : 'ltr'}`}>
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">
+            {locale === 'ar' ? 'مميزات قوية' : 'Powerful Features'}
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            {locale === 'ar' ? 'كل ما تحتاجه لأتمتة دعم العملاء' : 'Everything you need to automate customer support'}
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <div class="feature-card bg-dark-secondary rounded-card p-6">
+            <div class="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+              <i class="ri-robot-line text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">
+              {locale === 'ar' ? 'ذكاء اصطناعي' : 'Advanced AI'}
+            </h3>
+            <p class="text-gray-400 text-sm">
+              {locale === 'ar' ? 'ردود ذكية مولدة بالذكاء الاصطناعي' : 'Smart AI-generated responses'}
+            </p>
+          </div>
+          <div class="feature-card bg-dark-secondary rounded-card p-6">
+            <div class="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+              <i class="ri-time-line text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">
+              {locale === 'ar' ? 'دعم 24/7' : '24/7 Support'}
+            </h3>
+            <p class="text-gray-400 text-sm">
+              {locale === 'ar' ? 'تواصل مع عملائك دون توقف' : 'Always available for customers'}
+            </p>
+          </div>
+          <div class="feature-card bg-dark-secondary rounded-card p-6">
+            <div class="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+              <i class="ri-shopping-cart-line text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">
+              {locale === 'ar' ? 'تجارة إلكترونية' : 'E-commerce'}
+            </h3>
+            <p class="text-gray-400 text-sm">
+              {locale === 'ar' ? 'بيع المنتجات من المحادثات' : 'Sell directly through chat'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 bg-dark-secondary">
+      <div class="container mx-auto px-4">
+        <div class={`text-center mb-12 ${isRTL ? 'rtl' : 'ltr'}`}>
+          <h2 class="text-4xl font-bold mb-4">{t.pricing.title}</h2>
+          <p class="text-lg text-gray-300">{t.pricing.subtitle}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div class="pricing-card bg-dark rounded-card p-8 border border-white/10">
+            <h3 class="text-2xl font-bold mb-2">{locale === 'ar' ? 'المبتدئ' : 'Starter'}</h3>
+            <div class="mb-6">
+              <span class="text-4xl font-bold">9</span>
+              <span class="text-gray-400 ml-2">{t.pricing.currency}</span>
+            </div>
+            <button class="w-full gradient-bg text-white py-3 rounded-button font-semibold">
+              {t.pricing.signUp}
+            </button>
+          </div>
+          <div class="pricing-card bg-dark rounded-card p-8 border-2 border-primary">
+            <h3 class="text-2xl font-bold mb-2">{locale === 'ar' ? 'المحترف' : 'Pro'}</h3>
+            <div class="mb-6">
+              <span class="text-4xl font-bold">29</span>
+              <span class="text-gray-400 ml-2">{t.pricing.currency}</span>
+            </div>
+            <button class="w-full gradient-bg text-white py-3 rounded-button font-semibold">
+              {t.pricing.signUp}
+            </button>
+          </div>
+          <div class="pricing-card bg-dark rounded-card p-8 border border-white/10">
+            <h3 class="text-2xl font-bold mb-2">{locale === 'ar' ? 'للأعمال' : 'Business'}</h3>
+            <div class="mb-6">
+              <span class="text-4xl font-bold">79</span>
+              <span class="text-gray-400 ml-2">{t.pricing.currency}</span>
+            </div>
+            <button class="w-full gradient-bg text-white py-3 rounded-button font-semibold">
+              {t.pricing.signUp}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-dark">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <div class={`text-center mb-12 ${isRTL ? 'rtl' : 'ltr'}`}>
+          <h2 class="text-4xl font-bold mb-4">{t.faq.title}</h2>
+        </div>
+        <div class="space-y-4">
+          {t.faq.items.map((item: any) => (
+            <div class="faq-item bg-dark-secondary rounded-lg p-6">
+              <button class="faq-question w-full text-left flex justify-between items-center">
+                <span class="font-semibold text-lg">{item.q}</span>
+                <i class="ri-arrow-down-s-line text-2xl"></i>
+              </button>
+              <div class="faq-answer mt-4">
+                <p class="text-gray-400">{item.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</MeaChatLayout>
