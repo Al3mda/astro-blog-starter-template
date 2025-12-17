@@ -52,12 +52,75 @@ const lang = isRTL ? 'ar' : 'en';
   <body class="bg-dark text-white">
     <slot />
     
-
-    <!-- Chat Animation Script -->
-    <script src="/scripts/chat-animation.js"></script>
-    
-    <!--  Mobile Menu Script -->
-    <script src="/scripts/mobile-menu.js"></script>
-
+    <!-- All Scripts Combined - No External Files -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        
+        // ============================================
+        // CHAT ANIMATION
+        // ============================================
+        const chatMessages = document.querySelectorAll('.chat-msg');
+        if (chatMessages.length > 0) {
+          const delays = [500, 1200, 2400, 3600];
+          chatMessages.forEach((msg, index) => {
+            setTimeout(() => {
+              msg.classList.add('show');
+            }, delays[index] || 1000 * (index + 1));
+          });
+        }
+        
+        // ============================================
+        // MOBILE MENU
+        // ============================================
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('overlay');
+        
+        if (hamburger && mobileMenu && overlay) {
+          hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+          });
+          
+          overlay.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+          });
+          
+          // Close menu on link click
+          const menuLinks = mobileMenu.querySelectorAll('a');
+          menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+              hamburger.classList.remove('active');
+              mobileMenu.classList.remove('active');
+              overlay.classList.remove('active');
+            });
+          });
+        }
+        
+        // ============================================
+        // FAQ ACCORDION (if needed)
+        // ============================================
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+          const question = item.querySelector('.faq-question');
+          if (question) {
+            question.addEventListener('click', () => {
+              // Close other items
+              faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                  otherItem.classList.remove('active');
+                }
+              });
+              // Toggle current item
+              item.classList.toggle('active');
+            });
+          }
+        });
+        
+      });
+    </script>
   </body>
 </html>
