@@ -3,11 +3,12 @@
 // Complete footer with social links and legal pages
 
 import { getLocale } from "astro-i18n-aut";
-import { getTranslation } from '../../i18n/meachat.ts';
+import { getTranslation, isRTL } from '../../i18n/meachat.ts';
+import logoLight from '../../assets/img/logo/MeaChat-Light.svg';
 
 const locale = getLocale(Astro.url);
 const t = getTranslation(locale);
-const isRTL = locale === 'ar';
+const rtl = isRTL(locale);
 
 const currentYear = new Date().getFullYear();
 ---
@@ -22,7 +23,7 @@ const currentYear = new Date().getFullYear();
       <div class={isRTL ? 'text-right' : 'text-left'}>
         <div class="mb-4">
           <img 
-            src="/assets/img/logo/MeaChat-Light.svg" 
+            src={logoLight} 
             alt="MeaChat" 
             class="h-10 w-auto"
           />

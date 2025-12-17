@@ -171,6 +171,19 @@ export const meachatTranslations = {
 
 export type Locale = keyof typeof meachatTranslations;
 
+function normalizeLocale(locale: string | undefined | null): Locale {
+  if (!locale) return 'en';
+  const l = String(locale).toLowerCase();
+  if (l.startsWith('ar')) return 'ar';
+  return 'en';
+}
+
 export function getTranslation(locale: string) {
-  return meachatTranslations[locale as Locale] || meachatTranslations.en;
+  const norm = normalizeLocale(locale);
+  return meachatTranslations[norm];
+}
+
+export function isRTL(locale: string) {
+  const l = String(locale).toLowerCase();
+  return l.startsWith('ar');
 }

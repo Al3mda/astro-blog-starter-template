@@ -5,6 +5,7 @@
 import { getLocale } from "astro-i18n-aut";
 import { getTranslation } from '../../i18n/meachat.ts';
 import Button from '../ui/Button.astro';
+import humanAvatar from '../../assets/img/human-avatar.jpg';
 
 const locale = getLocale(Astro.url);
 const t = getTranslation(locale);
@@ -62,7 +63,7 @@ const isRTL = locale === 'ar';
               <div class="flex items-end chat-msg msg-1">
                 <div class="w-10 h-10 rounded-full bg-gray-600 flex-shrink-0 mr-3 overflow-hidden">
                   <img 
-                    src="/assets/img/human-avatar.jpg" 
+                    src={humanAvatar} 
                     alt="Store owner" 
                     class="w-full h-full object-cover"
                   />
@@ -86,7 +87,7 @@ const isRTL = locale === 'ar';
               <div class="flex items-end chat-msg msg-3">
                 <div class="w-10 h-10 rounded-full bg-gray-600 flex-shrink-0 mr-3 overflow-hidden">
                   <img 
-                    src="/assets/img/human-avatar.jpg" 
+                    src={humanAvatar} 
                     alt="Customer" 
                     class="w-full h-full object-cover"
                   />

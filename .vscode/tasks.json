@@ -9,6 +9,16 @@
 			"presentation": {
 				"reveal": "silent"
 			}
+		},
+		{
+			"label": "npm: build",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
 		}
 	]
 }

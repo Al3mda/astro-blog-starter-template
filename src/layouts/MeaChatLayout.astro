@@ -1,7 +1,7 @@
 ---
 // src/layouts/MeaChatLayout.astro
 import { getLocale } from "astro-i18n-aut";
-import { getTranslation } from '../i18n/meachat.ts';
+import { getTranslation, isRTL } from '../i18n/meachat.ts';
 import '../styles/style.css';
 
 interface Props {
@@ -16,8 +16,8 @@ const {
   description = t.siteDescription 
 } = Astro.props;
 
-const isRTL = locale === 'ar';
-const lang = isRTL ? 'ar' : 'en';
+const rtl = isRTL(locale);
+const lang = rtl ? 'ar' : 'en';
 ---
 
 <!DOCTYPE html>
@@ -37,6 +37,10 @@ const lang = isRTL ? 'ar' : 'en';
     />
     <link 
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" 
+      rel="stylesheet" 
+    />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" 
       rel="stylesheet" 
     />
     

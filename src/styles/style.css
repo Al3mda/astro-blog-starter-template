@@ -25,6 +25,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Use Tajawal for Arabic (RTL) pages */
+html[dir="rtl"] body {
+  font-family: 'Tajawal', 'Inter', system-ui, sans-serif;
+}
+
 /* ============================================
    GRADIENT UTILITIES
    ============================================ */

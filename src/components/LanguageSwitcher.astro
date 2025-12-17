@@ -1,15 +1,27 @@
 ---
 import { getLocale } from "astro-i18n-aut";
 
-const locale = getLocale(Astro.url);
-const basePath = Astro.url.pathname.replace(/^\/(ar|en)/, "").replace(/\/$/, "") || "/";
+const rawLocale = (getLocale(Astro.url) || "en-US").toLowerCase();
 
-const enLink = basePath + "/";
-const arLink = `/ar${basePath}/`;
+// Remove any leading locale segment (ar | ar-sa | en | en-us) from the pathname
+const stripped = Astro.url.pathname.replace(/^\/(ar|ar-sa|en|en-us)(?=\/|$)/i, "");
+
+const withTrailingSlash = (p: string) => {
+  if (!p || p === "/") return "/";
+  return p.endsWith("/") ? p : p + "/";
+};
+
+const base = withTrailingSlash(stripped);
+
+// English is default without a prefix, Arabic is under /ar/
+const enLink = base;
+const arLink = `/ar${base}`;
+
+const isEn = rawLocale.startsWith("en");
+const isAr = rawLocale.startsWith("ar");
 ---
-
 <div class="language-switcher">
-  {locale === "en" ? (
+  {isEn ? (
     <>
       <span class="active">English</span>
       <a href={arLink}>العربية</a>

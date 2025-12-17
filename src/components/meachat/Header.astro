@@ -3,21 +3,25 @@
 // Main navigation header with i18n support
 
 import { getLocale } from "astro-i18n-aut";
-import { getTranslation } from '../../i18n/meachat.ts';
+import { getTranslation, isRTL } from '../../i18n/meachat.ts';
 import Button from '../ui/Button.astro';
+import logoLight from '../../assets/img/logo/MeaChat-Light.svg';
+import LanguageSwitcher from '../LanguageSwitcher.astro';
 
 const locale = getLocale(Astro.url);
 const t = getTranslation(locale);
-const isRTL = locale === 'ar';
----
+const rtl = isRTL(locale);
+const localeStr = (locale || 'en-US').toLowerCase();
+const isAr = localeStr.startsWith('ar');
+const homeHref = isAr ? '/ar/' : '/';
 
 <header class="fixed top-0 left-0 right-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
   <div class="container mx-auto px-4 py-4 flex items-center justify-between">
     
     <!-- Logo -->
-    <a href={`/${locale === 'en' ? '' : locale + '/'}`} class="flex items-center">
+    <a href={homeHref} class="flex items-center">
       <img 
-        src="/assets/img/logo/MeaChat-Light.svg" 
+        src={logoLight} 
         alt="MeaChat Logo" 
         width="200" 
         height="50" 
@@ -28,7 +32,7 @@ const isRTL = locale === 'ar';
     
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-      <a href={`#${locale === 'en' ? '' : locale + '/'}`} class="text-white hover:text-[#FFB62F] transition-colors">
+      <a href={homeHref} class="text-white hover:text-[#FFB62F] transition-colors">
         {t.nav.home}
       </a>
       <a href="#features" class="text-white hover:text-[#FFB62F] transition-colors">
@@ -48,8 +52,9 @@ const isRTL = locale === 'ar';
       </a>
     </nav>
     
-    <!-- CTA Button (Desktop) -->
-    <div class="hidden md:block">
+    <!-- Language Switcher + CTA (Desktop) -->
+    <div class="hidden md:flex items-center gap-6">
+      <LanguageSwitcher />
       <Button href="#pricing" variant="primary">
         {t.nav.tryFree}
       </Button>
@@ -72,7 +77,7 @@ const isRTL = locale === 'ar';
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href={`/${locale === 'en' ? '' : locale + '/'}`} class="text-xl font-medium text-white mb-6">
+  <a href={homeHref} class="text-xl font-medium text-white mb-6">
     {t.nav.home}
   </a>
   <a href="#features" class="text-xl font-medium text-white mb-6">
@@ -94,6 +99,11 @@ const isRTL = locale === 'ar';
   <Button href="#pricing" variant="primary" class="mt-4 w-full">
     {t.nav.tryFree}
   </Button>
+
+  <!-- Language Switcher (Mobile) -->
+  <div class="mt-6">
+    <LanguageSwitcher />
+  </div>
 </div>
 
 <!-- Overlay -->
