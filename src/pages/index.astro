@@ -30,7 +30,7 @@ const isRTL = locale === 'ar';
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          <div class="channel-card bg-dark-secondary rounded-card p-6 text-center">
+          <div class="channel-card bg-dark-secondary rounded-2xl p-6 text-center">
             <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/10 flex items-center justify-center">
               <i class="ri-whatsapp-line text-4xl text-green-500"></i>
             </div>
@@ -42,7 +42,7 @@ const isRTL = locale === 'ar';
             </p>
           </div>
           
-          <div class="channel-card bg-dark-secondary rounded-card p-6 text-center">
+          <div class="channel-card bg-dark-secondary rounded-2xl p-6 text-center">
             <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-pink-500/10 flex items-center justify-center">
               <i class="ri-instagram-line text-4xl text-pink-500"></i>
             </div>
@@ -54,7 +54,7 @@ const isRTL = locale === 'ar';
             </p>
           </div>
           
-          <div class="channel-card bg-dark-secondary rounded-card p-6 text-center">
+          <div class="channel-card bg-dark-secondary rounded-2xl p-6 text-center">
             <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-500/10 flex items-center justify-center">
               <i class="ri-messenger-line text-4xl text-blue-500"></i>
             </div>
@@ -102,8 +102,8 @@ const isRTL = locale === 'ar';
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <div class="feature-card bg-dark-secondary rounded-card p-6">
-            <div class="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+          <div class="feature-card bg-dark-secondary rounded-2xl p-6">
+            <div class="w-12 h-12 mb-4 rounded-lg bg-[#FFB62F]/10 flex items-center justify-center">
               <i class="ri-robot-line text-2xl text-primary"></i>
             </div>
             <h3 class="text-xl font-semibold mb-2">
@@ -113,8 +113,8 @@ const isRTL = locale === 'ar';
               {locale === 'ar' ? 'ردود ذكية مولدة بالذكاء الاصطناعي' : 'Smart AI-generated responses'}
             </p>
           </div>
-          <div class="feature-card bg-dark-secondary rounded-card p-6">
-            <div class="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+          <div class="feature-card bg-dark-secondary rounded-2xl p-6">
+            <div class="w-12 h-12 mb-4 rounded-lg bg-[#FFB62F]/10 flex items-center justify-center">
               <i class="ri-time-line text-2xl text-primary"></i>
             </div>
             <h3 class="text-xl font-semibold mb-2">
@@ -124,8 +124,8 @@ const isRTL = locale === 'ar';
               {locale === 'ar' ? 'تواصل مع عملائك دون توقف' : 'Always available for customers'}
             </p>
           </div>
-          <div class="feature-card bg-dark-secondary rounded-card p-6">
-            <div class="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+          <div class="feature-card bg-dark-secondary rounded-2xl p-6">
+            <div class="w-12 h-12 mb-4 rounded-lg bg-[#FFB62F]/10 flex items-center justify-center">
               <i class="ri-shopping-cart-line text-2xl text-primary"></i>
             </div>
             <h3 class="text-xl font-semibold mb-2">
@@ -147,33 +147,33 @@ const isRTL = locale === 'ar';
           <p class="text-lg text-gray-300">{t.pricing.subtitle}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <div class="pricing-card bg-dark rounded-card p-8 border border-white/10">
+          <div class="pricing-card bg-dark rounded-2xl p-8 border border-white/10">
             <h3 class="text-2xl font-bold mb-2">{locale === 'ar' ? 'المبتدئ' : 'Starter'}</h3>
             <div class="mb-6">
               <span class="text-4xl font-bold">9</span>
               <span class="text-gray-400 ml-2">{t.pricing.currency}</span>
             </div>
-            <button class="w-full gradient-bg text-white py-3 rounded-button font-semibold">
+            <button class="w-full gradient-bg text-white py-3 rounded-lg font-semibold">
               {t.pricing.signUp}
             </button>
           </div>
-          <div class="pricing-card bg-dark rounded-card p-8 border-2 border-primary">
+          <div class="pricing-card bg-dark rounded-2xl p-8 border-2 border-primary">
             <h3 class="text-2xl font-bold mb-2">{locale === 'ar' ? 'المحترف' : 'Pro'}</h3>
             <div class="mb-6">
               <span class="text-4xl font-bold">29</span>
               <span class="text-gray-400 ml-2">{t.pricing.currency}</span>
             </div>
-            <button class="w-full gradient-bg text-white py-3 rounded-button font-semibold">
+            <button class="w-full gradient-bg text-white py-3 rounded-lg font-semibold">
               {t.pricing.signUp}
             </button>
           </div>
-          <div class="pricing-card bg-dark rounded-card p-8 border border-white/10">
+          <div class="pricing-card bg-dark rounded-2xl p-8 border border-white/10">
             <h3 class="text-2xl font-bold mb-2">{locale === 'ar' ? 'للأعمال' : 'Business'}</h3>
             <div class="mb-6">
               <span class="text-4xl font-bold">79</span>
               <span class="text-gray-400 ml-2">{t.pricing.currency}</span>
             </div>
-            <button class="w-full gradient-bg text-white py-3 rounded-button font-semibold">
+            <button class="w-full gradient-bg text-white py-3 rounded-lg font-semibold">
               {t.pricing.signUp}
             </button>
           </div>
