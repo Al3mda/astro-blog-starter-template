@@ -1,10 +1,10 @@
 ---
-// src/components/meachat/sections/Hero.astro
+// src/components/meachat/Hero.astro
 // Hero section with animated chat simulation
 
 import { getLocale } from "astro-i18n-aut";
-import { getTranslation } from '../../../i18n/meachat';
-import Button from '../../ui/Button.astro';
+import { getTranslation } from '../../i18n/meachat.ts';
+import Button from '../ui/Button.astro';
 
 const locale = getLocale(Astro.url);
 const t = getTranslation(locale);

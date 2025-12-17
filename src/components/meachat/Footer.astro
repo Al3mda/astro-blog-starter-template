@@ -3,7 +3,7 @@
 // Complete footer with social links and legal pages
 
 import { getLocale } from "astro-i18n-aut";
-import { getTranslation } from '../../i18n/meachat';
+import { getTranslation } from '../../i18n/meachat.ts';
 
 const locale = getLocale(Astro.url);
 const t = getTranslation(locale);

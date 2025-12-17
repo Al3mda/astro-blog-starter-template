@@ -17,6 +17,7 @@
 		"@astrojs/rss": "4.0.14",
 		"@astrojs/sitemap": "3.6.0",
 		"astro": "5.16.2",
+		"astro-i18n-aut": "^0.7.3",
 		"astro-robots-txt": "^1.0.0",
 		"astro-seo-schema": "^5.1.0",
 		"schema-dts": "^1.1.5",
