@@ -1,0 +1,164 @@
+---
+// src/components/meachat/sections/Hero.astro
+// Hero section with animated chat simulation
+
+import { getLocale } from "astro-i18n-aut";
+import { getTranslation } from '../../../i18n/meachat';
+import Button from '../../ui/Button.astro';
+
+const locale = getLocale(Astro.url);
+const t = getTranslation(locale);
+const isRTL = locale === 'ar';
+---
+
+<section id="hero" class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center">
+  <!-- Background with gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-dark via-dark-secondary to-dark opacity-90"></div>
+  
+  <!-- Animated particles (optional) -->
+  <div class="absolute inset-0 opacity-30">
+    <div class="particle"></div>
+    <div class="particle" style="animation-delay: 2s;"></div>
+    <div class="particle" style="animation-delay: 4s;"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+      
+      <!-- Left Column: Text Content -->
+      <div class={`w-full lg:w-1/2 ${isRTL ? 'text-right' : 'text-left'}`}>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          {t.hero.title}
+          <br />
+          <span class="gradient-text">{t.hero.titleHighlight}</span>
+        </h1>
+        
+        <p class="text-base md:text-lg text-gray-300 mb-6 max-w-xl">
+          {t.hero.subtitle}
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6">
+          <Button href="#pricing" variant="primary" size="lg">
+            {t.hero.ctaPrimary}
+          </Button>
+          <Button href="#demo" variant="secondary" size="lg">
+            {t.hero.ctaSecondary}
+          </Button>
+        </div>
+        
+        <p class="text-xs md:text-sm text-gray-400">
+          {t.hero.freeTrialNote}
+        </p>
+      </div>
+      
+      <!-- Right Column: Chat Simulation -->
+      <div class="w-full lg:w-1/2 flex justify-center">
+        <div class="max-w-md w-full">
+          <div class="bg-dark-secondary/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 shadow-2xl">
+            <div class="space-y-4" id="chat-container">
+              
+              <!-- Message 1: Store Owner -->
+              <div class="flex items-end chat-msg msg-1">
+                <div class="w-10 h-10 rounded-full bg-gray-600 flex-shrink-0 mr-3 overflow-hidden">
+                  <img 
+                    src="/assets/img/human-avatar.jpg" 
+                    alt="Store owner" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="chat-bubble user max-w-[80%]">
+                  {t.hero.chatOwner}
+                </div>
+              </div>
+              
+              <!-- Message 2: MeaChat Bot Reply -->
+              <div class="flex items-end justify-end chat-msg msg-2">
+                <div class="chat-bubble bot max-w-[80%]">
+                  {t.hero.chatBot1}
+                </div>
+                <div class="w-10 h-10 rounded-full bg-primary flex-shrink-0 ml-3 flex items-center justify-center">
+                  <i class="ri-robot-line text-dark text-lg"></i>
+                </div>
+              </div>
+              
+              <!-- Message 3: Customer -->
+              <div class="flex items-end chat-msg msg-3">
+                <div class="w-10 h-10 rounded-full bg-gray-600 flex-shrink-0 mr-3 overflow-hidden">
+                  <img 
+                    src="/assets/img/human-avatar.jpg" 
+                    alt="Customer" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="chat-bubble user max-w-[80%]">
+                  {t.hero.chatCustomer}
+                </div>
+              </div>
+              
+              <!-- Message 4: MeaChat Bot Reply with Action -->
+              <div class="flex items-end justify-end chat-msg msg-4">
+                <div class="chat-bubble bot max-w-[80%] whitespace-pre-line">
+                  {t.hero.chatBot2}
+                </div>
+                <div class="w-10 h-10 rounded-full bg-primary flex-shrink-0 ml-3 flex items-center justify-center">
+                  <i class="ri-robot-line text-dark text-lg"></i>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Particle animation for background */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255, 182, 47, 0.8), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 20s infinite ease-in-out;
+  }
+  
+  .particle:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  .particle:nth-child(2) {
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+  }
+  
+  .particle:nth-child(3) {
+    top: 40%;
+    left: 50%;
+    animation-delay: 4s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(50px, -100px) scale(1.5);
+      opacity: 0.5;
+    }
+    90% {
+      opacity: 0.3;
+    }
+  }
+</style>

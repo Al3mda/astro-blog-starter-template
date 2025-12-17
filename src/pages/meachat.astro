@@ -1,0 +1,64 @@
+---
+// src/pages/meachat.astro
+// Complete MeaChat landing page demo
+
+import { getLocale } from "astro-i18n-aut";
+import { getTranslation } from '../i18n/meachat';
+import MeaChatLayout from '../layouts/MeaChatLayout.astro';
+import Header from '../components/meachat/Header.astro';
+import Hero from '../components/meachat/sections/Hero.astro';
+import Footer from '../components/meachat/Footer.astro';
+
+const locale = getLocale(Astro.url);
+const t = getTranslation(locale);
+---
+
+<MeaChatLayout title={t.siteTitle} description={t.siteDescription}>
+  <Header />
+  
+  <main>
+    <Hero />
+    
+    <!-- Placeholder sections - يمكنك إضافتها لاحقاً -->
+    <section id="channels" class="py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-4">{t.channels.title}</h2>
+        <p class="text-gray-300">{t.channels.subtitle}</p>
+      </div>
+    </section>
+    
+    <section id="integrations" class="py-20 bg-dark-secondary">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-4">{t.integrations.title}</h2>
+        <p class="text-gray-300">{t.integrations.subtitle}</p>
+      </div>
+    </section>
+    
+    <section id="features" class="py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-4">
+          {locale === 'ar' ? 'مميزات قوية' : 'Powerful Features'}
+        </h2>
+        <p class="text-gray-300">
+          {locale === 'ar' ? 'كل ما تحتاجه لأتمتة دعم العملاء' : 'Everything you need to automate customer support'}
+        </p>
+      </div>
+    </section>
+    
+    <section id="pricing" class="py-20 bg-dark-secondary">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-4">{t.pricing.title}</h2>
+        <p class="text-gray-300">{t.pricing.subtitle}</p>
+      </div>
+    </section>
+    
+    <section id="faq" class="py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-4">{t.faq.title}</h2>
+        <!-- FAQ items will go here -->
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</MeaChatLayout>

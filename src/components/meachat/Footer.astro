@@ -1,0 +1,201 @@
+---
+// src/components/meachat/Footer.astro
+// Complete footer with social links and legal pages
+
+import { getLocale } from "astro-i18n-aut";
+import { getTranslation } from '../../i18n/meachat';
+
+const locale = getLocale(Astro.url);
+const t = getTranslation(locale);
+const isRTL = locale === 'ar';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-dark-secondary border-t border-white/5 pt-12 pb-6">
+  <div class="container mx-auto px-4">
+    
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      
+      <!-- Column 1: Logo & Description -->
+      <div class={isRTL ? 'text-right' : 'text-left'}>
+        <div class="mb-4">
+          <img 
+            src="/assets/img/logo/MeaChat-Light.svg" 
+            alt="MeaChat" 
+            class="h-10 w-auto"
+          />
+        </div>
+        <p class="text-sm text-gray-400 mb-4">
+          {t.siteDescription}
+        </p>
+        <!-- Social Links -->
+        <div class="flex gap-3" class:list={[isRTL && 'justify-end']}>
+          <a 
+            href={t.footer.social?.facebook || 'https://www.facebook.com/'} 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary/20 flex items-center justify-center transition-colors"
+            aria-label="Facebook"
+          >
+            <i class="ri-facebook-fill text-lg text-primary"></i>
+          </a>
+          <a 
+            href={t.footer.social?.twitter || 'https://twitter.com/'} 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary/20 flex items-center justify-center transition-colors"
+            aria-label="Twitter"
+          >
+            <i class="ri-twitter-x-fill text-lg text-primary"></i>
+          </a>
+          <a 
+            href={t.footer.social?.linkedin || 'https://www.linkedin.com/'} 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary/20 flex items-center justify-center transition-colors"
+            aria-label="LinkedIn"
+          >
+            <i class="ri-linkedin-fill text-lg text-primary"></i>
+          </a>
+          <a 
+            href={t.footer.social?.youtube || 'https://www.youtube.com/'} 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary/20 flex items-center justify-center transition-colors"
+            aria-label="YouTube"
+          >
+            <i class="ri-youtube-fill text-lg text-primary"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Column 2: Product -->
+      <div class={isRTL ? 'text-right' : 'text-left'}>
+        <h3 class="text-white font-semibold mb-4">
+          {locale === 'ar' ? 'المنتج' : 'Product'}
+        </h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#features" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {t.nav.features}
+            </a>
+          </li>
+          <li>
+            <a href="#channels" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {t.nav.channels}
+            </a>
+          </li>
+          <li>
+            <a href="#integrations" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {t.nav.integrations}
+            </a>
+          </li>
+          <li>
+            <a href="#pricing" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {t.nav.pricing}
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Column 3: Support -->
+      <div class={isRTL ? 'text-right' : 'text-left'}>
+        <h3 class="text-white font-semibold mb-4">
+          {locale === 'ar' ? 'الدعم' : 'Support'}
+        </h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#faq" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {t.nav.faq}
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {locale === 'ar' ? 'اتصل بنا' : 'Contact Us'}
+            </a>
+          </li>
+          <li>
+            <a href="/docs" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {locale === 'ar' ? 'التوثيق' : 'Documentation'}
+            </a>
+          </li>
+          <li>
+            <a href="/blog" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {locale === 'ar' ? 'المدونة' : 'Blog'}
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Column 4: Company -->
+      <div class={isRTL ? 'text-right' : 'text-left'}>
+        <h3 class="text-white font-semibold mb-4">
+          {locale === 'ar' ? 'الشركة' : 'Company'}
+        </h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/about" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {locale === 'ar' ? 'عن ميتشات' : 'About MeaChat'}
+            </a>
+          </li>
+          <li>
+            <a href="/careers" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {locale === 'ar' ? 'الوظائف' : 'Careers'}
+            </a>
+          </li>
+          <li>
+            <a href="/affiliate" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {locale === 'ar' ? 'برنامج الشراكة' : 'Affiliate Program'}
+            </a>
+          </li>
+          <li>
+            <a href="/partners" class="text-gray-400 hover:text-primary transition-colors text-sm">
+              {locale === 'ar' ? 'الشركاء' : 'Partners'}
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+    
+    <!-- Divider -->
+    <div class="border-t border-white/5 pt-6">
+      
+      <!-- Bottom Footer: Copyright & Legal -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        
+        <!-- Copyright -->
+        <div class="text-sm text-gray-400">
+          {t.footer.copyright}
+        </div>
+        
+        <!-- Legal Links -->
+        <div class="flex flex-wrap justify-center md:justify-end gap-4">
+          <a 
+            href="/privacy" 
+            class="text-sm text-gray-400 hover:text-primary transition-colors"
+          >
+            {t.footer.privacy}
+          </a>
+          <a 
+            href="/terms" 
+            class="text-sm text-gray-400 hover:text-primary transition-colors"
+          >
+            {t.footer.terms}
+          </a>
+          <a 
+            href="/gdpr" 
+            class="text-sm text-gray-400 hover:text-primary transition-colors"
+          >
+            {t.footer.gdpr}
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+</footer>
