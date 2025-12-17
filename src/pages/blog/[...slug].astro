@@ -1,24 +1,115 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
-import { render } from 'astro:content';
-import { getLocale } from "astro-i18n-aut";
-
-const locale = getLocale(Astro.url);
+import MeaChatLayout from '../../layouts/MeaChatLayout.astro';
+import Header from '../../components/meachat/Header.astro';
+import Footer from '../../components/meachat/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
+
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const { Content } = await render(post);
+const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data} locale={locale}>
-	<Content />
-</BlogPost>
+<MeaChatLayout title={post.data.title} description={post.data.description}>
+  <Header />
+  
+  <main class="bg-dark text-white py-20 min-h-screen">
+    <article class="container mx-auto px-4 max-w-4xl">
+      <header class="mb-12">
+        {post.data.heroImage && (
+          <img
+            src={post.data.heroImage}
+            alt={post.data.title}
+            class="w-full h-96 object-cover rounded-card mb-8"
+          />
+        )}
+        
+        <div class="mb-4">
+          <a
+            href="/blog"
+            class="text-primary hover:underline flex items-center gap-2"
+          >
+            ← Back to Blog
+          </a>
+        </div>
+        
+        <h1 class="text-5xl font-bold mb-4">{post.data.title}</h1>
+        
+        <div class="flex items-center gap-4 text-gray-400">
+          <FormattedDate date={post.data.pubDate} />
+          {post.data.updatedDate && (
+            <>
+              <span>•</span>
+              <span>Updated: <FormattedDate date={post.data.updatedDate} /></span>
+            </>
+          )}
+        </div>
+      </header>
+      
+      <div class="prose prose-invert prose-lg max-w-none">
+        <Content />
+      </div>
+    </article>
+  </main>
+  
+  <Footer />
+</MeaChatLayout>
+
+<style is:global>
+  .prose {
+    color: #fff;
+  }
+  .prose h2 {
+    color: #FFB62F;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .prose h3 {
+    color: #FFB62F;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+  .prose a {
+    color: #FFB62F;
+    text-decoration: underline;
+  }
+  .prose a:hover {
+    opacity: 0.8;
+  }
+  .prose code {
+    background: rgba(255, 182, 47, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    color: #FFB62F;
+  }
+  .prose pre {
+    background: #241A4F;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  .prose ul, .prose ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+</style>
