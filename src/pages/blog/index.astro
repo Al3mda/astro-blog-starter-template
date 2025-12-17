@@ -1,75 +1,55 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { Schema } from 'astro-seo-schema';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
+import MeaChatLayout from '../../layouts/MeaChatLayout.astro';
+import Header from '../../components/meachat/Header.astro';
+import Footer from '../../components/meachat/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { getLocale } from "astro-i18n-aut";
+import { getCollection } from 'astro:content';
 
-const locale = getLocale(Astro.url);
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
-<!doctype html>
-<html lang={locale === "ar" ? "ar" : "en"}>
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<Schema
-			item={{
-				'@context': 'https://schema.org',
-				'@type': 'Blog',
-				name: 'Blog',
-				description: SITE_DESCRIPTION,
-				url: new URL('blog/', Astro.site).toString(),
-			}}
-		/>
-		<style>
-			main {
-				min-height: 100vh;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main class="max-w-4xl mx-auto px-4 py-8">
-			<section>
-				<h1 class="text-4xl font-bold mb-8">Blog</h1>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					{
-						posts.map((post) => (
-							<a href={`/blog/${post.id}/`} class="group">
-								<div class="card bg-base-100 shadow-lg hover:shadow-2xl transition-shadow duration-300">
-									<figure class="overflow-hidden h-48">
-										<img 
-											width={720} 
-											height={360} 
-											src={post.data.heroImage} 
-											alt={post.data.title}
-											class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-										/>
-									</figure>
-									<div class="card-body">
-										<h2 class="card-title text-xl group-hover:text-[#FFB62F] transition-colors">
-											{post.data.title}
-										</h2>
-										<p class="text-sm text-base-content/70">
-											<FormattedDate date={post.data.pubDate} />
-										</p>
-										<div class="card-actions justify-end mt-4">
-											<div class="badge badge-primary">Read More</div>
-										</div>
-									</div>
-								</div>
-							</a>
-						))
-					}
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<MeaChatLayout title="Blog - MeaChat">
+  <Header />
+  
+  <main class="bg-dark text-white py-20 min-h-screen">
+    <div class="container mx-auto px-4">
+      <section>
+        <h1 class="text-4xl font-bold mb-8">Blog</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            posts.map((post) => (
+              <a href={`/blog/${post.slug}/`} class="group">
+                <div class="bg-dark-secondary rounded-card p-6 h-full transition-all hover:shadow-glow-primary">
+                  {post.data.heroImage && (
+                    <img
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      class="w-full h-48 object-cover rounded-lg mb-4"
+                    />
+                  )}
+                  <h2 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-sm text-gray-400 mb-3">
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                  <p class="text-base text-gray-300">
+                    {post.data.description}
+                  </p>
+                  <div class="mt-4">
+                    <span class="text-primary font-medium">Read More →</span>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <Footer />
+</MeaChatLayout>

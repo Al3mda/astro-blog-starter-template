@@ -1,5 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MeaChatLayout from '../layouts/MeaChatLayout.astro';
+import Header from '../components/meachat/Header.astro';
 import Hero from '../components/meachat/Hero.astro';
 import Features from '../components/Features.astro';
 import Channels from '../components/Channels.astro';
@@ -8,11 +9,11 @@ import Testimonials from '../components/Testimonials.astro';
 import Pricing from '../components/Pricing.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
-
-const lang = 'en'; // أو 'ar'
+import Footer from '../components/meachat/Footer.astro';
 ---
 
-<Layout title="MeaChat" lang={lang}>
+<MeaChatLayout>
+  <Header />
   <Hero />
   <Features />
   <Channels />
@@ -21,4 +22,5 @@ const lang = 'en'; // أو 'ar'
   <Pricing />
   <Faq />
   <Cta />
-</Layout>
+  <Footer />
+</MeaChatLayout>

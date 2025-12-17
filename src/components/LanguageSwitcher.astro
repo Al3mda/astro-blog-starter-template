@@ -36,24 +36,34 @@ const isAr = locale === "ar";
 
 <style>
   .language-switcher {
-    display: flex;
-    gap: 1rem;
+display: flex;
+    gap: 0.5rem;
     align-items: center;
-  }
-
+    background: rgba(255, 182, 47, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 182, 47, 0.2);
   .language-switcher a {
-    color: var(--text-color);
+color: #fff;
     text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  }
-
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
   .language-switcher a:hover {
+.language-switcher a:hover {
     opacity: 1;
+    background: rgba(255, 182, 47, 0.2);
   }
 
-  .language-switcher .active {
+.language-switcher .active {
     font-weight: 600;
     opacity: 1;
+    background: #FFB62F;
+    color: #180C39;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
   }
 </style>
