@@ -30,6 +30,11 @@ html[dir="rtl"] body {
   font-family: 'Tajawal', 'Inter', system-ui, sans-serif;
 }
 
+.hero-section-bg {
+    background: url('../img/hero-bg.jpeg') center center/cover no-repeat;
+    min-height: 600px;
+}
+
 /* ============================================
    GRADIENT UTILITIES
    ============================================ */
