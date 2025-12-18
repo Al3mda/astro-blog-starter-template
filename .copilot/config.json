@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "repository": {
+    "name": "astro-blog-starter-template",
+    "owner": "Al3mda",
+    "type": "astro",
+    "framework": "Astro"
+  },
+  "ai_assistant": {
+    "enabled": true,
+    "model": "gpt-4",
+    "auto_execute": false,
+    "require_approval": true
+  },
+  "commands": {
+    "execute": {
+      "enabled": true,
+      "allowed_operations": [
+        "file_create",
+        "file_update",
+        "file_delete",
+        "run_scripts",
+        "generate_docs"
+      ]
+    },
+    "analyze": {
+      "enabled": true,
+      "scope": ["code_quality", "security", "performance", "dependencies"]
+    },
+    "test": {
+      "enabled": true,
+      "auto_run": false
+    },
+    "deploy": {
+      "enabled": false,
+      "require_manual_approval": true
+    }
+  },
+  "integration": {
+    "github_actions": true,
+    "issue_tracking": true,
+    "pull_request_reviews": true
+  },
+  "notifications": {
+    "on_task_complete": true,
+    "on_error": true,
+    "channels": ["github_comments", "commit_status"]
+  },
+  "security": {
+    "scan_dependencies": true,
+    "check_vulnerabilities": true,
+    "auto_update_safe": false
+  },
+  "file_patterns": {
+    "include": ["src/**/*", "public/**/*", "*.config.*"],
+    "exclude": ["node_modules/**", "dist/**", ".git/**"]
+  },
+  "task_management": {
+    "queue_file": ".copilot/pending-tasks.json",
+    "completed_file": ".copilot/completed-tasks.json",
+    "max_concurrent": 3
+  }
+}
