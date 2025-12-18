@@ -1,19 +1,23 @@
 ---
 // src/layouts/MeaChatLayout.astro
-import { getLocale } from "astro-i18n-aut";
-import { getTranslation, isRTL } from '../i18n/meachat.ts';
+import { getLocale } from "astro:i18n";
+import { getTranslation, isRTL } from '../utils/i18n';
+import Header from '../components/meachat/Header.astro';
+import Footer from '../components/meachat/Footer.astro';
 import '../styles/style.css';
 
 interface Props {
   title?: string;
   description?: string;
+  locale?: string;
 }
 
-const locale = getLocale(Astro.url);
+const { locale: propLocale } = Astro.props;
+const locale = propLocale || getLocale(Astro.url);
 const t = getTranslation(locale);
-const { 
-  title = t.siteTitle, 
-  description = t.siteDescription 
+const {
+  title = t.siteTitle,
+  description = t.siteDescription
 } = Astro.props;
 
 const rtl = isRTL(locale);
@@ -25,106 +29,14 @@ const lang = rtl ? 'ar' : 'en';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <title>{title}</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" 
-      rel="stylesheet" 
-    />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" 
-      rel="stylesheet" 
-    />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" 
-      rel="stylesheet" 
-    />
-    
-    <!-- Remix Icons -->
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
-    />
-    
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
   </head>
-  
-  <body class="bg-[#180C39] text-white">
-    <slot />
-    
-    <!-- All Scripts Combined - No External Files -->
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function() {
-        
-        // ============================================
-        // CHAT ANIMATION
-        // ============================================
-        const chatMessages = document.querySelectorAll('.chat-msg');
-        if (chatMessages.length > 0) {
-          const delays = [500, 1200, 2400, 3600];
-          chatMessages.forEach((msg, index) => {
-            setTimeout(() => {
-              msg.classList.add('show');
-            }, delays[index] || 1000 * (index + 1));
-          });
-        }
-        
-        // ============================================
-        // MOBILE MENU
-        // ============================================
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const overlay = document.getElementById('overlay');
-        
-        if (hamburger && mobileMenu && overlay) {
-          hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-          });
-          
-          overlay.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-          });
-          
-          // Close menu on link click
-          const menuLinks = mobileMenu.querySelectorAll('a');
-          menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-              hamburger.classList.remove('active');
-              mobileMenu.classList.remove('active');
-              overlay.classList.remove('active');
-            });
-          });
-        }
-        
-        // ============================================
-        // FAQ ACCORDION (if needed)
-        // ============================================
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-          const question = item.querySelector('.faq-question');
-          if (question) {
-            question.addEventListener('click', () => {
-              // Close other items
-              faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                  otherItem.classList.remove('active');
-                }
-              });
-              // Toggle current item
-              item.classList.toggle('active');
-            });
-          }
-        });
-        
-      });
-    </script>
+  <body>
+    <Header locale={locale} />
+    <main>
+      <slot />
+    </main>
+    <Footer locale={locale} />
   </body>
 </html>
