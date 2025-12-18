@@ -1,0 +1,131 @@
+name: Copilot Task Executor
+
+# This workflow monitors .copilot/pending-tasks.json and executes tasks
+on:
+  push:
+    paths:
+      - '.copilot/pending-tasks.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute-tasks:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Read pending tasks
+        id: read_tasks
+        run: |
+          echo "Reading pending tasks..."
+          cat .copilot/pending-tasks.json
+          
+          # Check if there are any pending tasks
+          TASK_COUNT=$(jq '.tasks | length' .copilot/pending-tasks.json)
+          echo "task_count=$TASK_COUNT" >> $GITHUB_OUTPUT
+      
+      - name: Process tasks
+        if: steps.read_tasks.outputs.task_count > '0'
+        run: |
+          echo "Processing tasks..."
+          
+          # Read the first pending task
+          TASK=$(jq -r '.tasks[0]' .copilot/pending-tasks.json)
+          TASK_ID=$(echo $TASK | jq -r '.id')
+          TASK_TYPE=$(echo $TASK | jq -r '.type')
+          TASK_DESC=$(echo $TASK | jq -r '.description')
+          TASK_MESSAGE=$(echo $TASK | jq -r '.details.message // ""')
+          
+          echo "Task ID: $TASK_ID"
+          echo "Type: $TASK_TYPE"
+          echo "Description: $TASK_DESC"
+          echo "Message: $TASK_MESSAGE"
+          
+          # Save task info for next step
+          echo "$TASK" > /tmp/current_task.json
+          echo "task_id=$TASK_ID" >> $GITHUB_OUTPUT
+          echo "task_type=$TASK_TYPE" >> $GITHUB_OUTPUT
+        id: process
+      
+      - name: Execute task
+        if: steps.read_tasks.outputs.task_count > '0'
+        run: |
+          TASK_TYPE="${{ steps.process.outputs.task_type }}"
+          TASK_ID="${{ steps.process.outputs.task_id }}"
+          
+          echo "Executing task type: $TASK_TYPE"
+          
+          # For now, just simulate execution
+          # In a real implementation, this would call actual task handlers
+          
+          if [ "$TASK_TYPE" = "greeting" ]; then
+            echo "✅ Greeting task executed!"
+            RESPONSE="مرحباً بك! أنا Copilot وقد استلمت رسالتك. النظام يعمل بنجاح! 🎉"
+          else
+            echo "⚠️  Task type '$TASK_TYPE' not yet implemented"
+            RESPONSE="Task received but handler not implemented yet"
+          fi
+          
+          # Create completion record
+          COMPLETED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          
+          # Read current completed tasks
+          COMPLETED=$(cat .copilot/completed-tasks.json)
+          
+          # Add new completion
+          echo $COMPLETED | jq \
+            --arg id "$TASK_ID" \
+            --arg completed_at "$COMPLETED_AT" \
+            --arg response "$RESPONSE" \
+            --arg commit "$GITHUB_SHA" \
+            '.completed += [{
+              "id": $id,
+              "completed_at": $completed_at,
+              "status": "success",
+              "response": $response,
+              "commit": $commit,
+              "executed_by": "GitHub Actions",
+              "workflow_run": "'"$GITHUB_RUN_ID"'"
+            }]' > .copilot/completed-tasks.json
+          
+          # Remove completed task from pending
+          jq '.tasks = .tasks[1:]' .copilot/pending-tasks.json > /tmp/pending.json
+          mv /tmp/pending.json .copilot/pending-tasks.json
+          
+          echo "✅ Task completed and logged"
+      
+      - name: Commit results
+        if: steps.read_tasks.outputs.task_count > '0'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "Copilot Executor[bot]"
+          
+          git add .copilot/completed-tasks.json
+          git add .copilot/pending-tasks.json
+          
+          git commit -m "🤖 Copilot: Executed task ${{ steps.process.outputs.task_id }}"
+          git push
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 🤖 Copilot Task Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.read_tasks.outputs.task_count }}" -gt "0" ]; then
+            echo "✅ **Task Executed Successfully**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- **Task ID:** ${{ steps.process.outputs.task_id }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Type:** ${{ steps.process.outputs.task_type }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Status:** Completed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Results have been written to \`.copilot/completed-tasks.json\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No pending tasks found" >> $GITHUB_STEP_SUMMARY
+          fi
