@@ -1,5 +1,35 @@
 {
   "version": "1.0",
-  "tasks": [],
+  "tasks":[
+    {
+      "id": "migrate-i18n-system",
+      "timestamp": "2025-12-19T00:35:00Z",
+      "type": "refactor",
+      "description": "Migrate from astro-i18n-aut to official Astro i18n system",
+      "details": {
+        "files_to_modify": [
+          "src/pages/about.astro",
+          "src/pages/meachat.astro",
+          "src/components/LanguageSwitcher.astro",
+          "src/components/meachat/Hero.astro"
+        ],
+        "actions": [
+          "Remove all imports from 'astro-i18n-aut'",
+          "Replace getLocale(Astro.url) with Astro.currentLocale",
+          "Update language switching logic to use Astro's built-in i18n routing",
+          "Remove astro-i18n-aut references from README.md",
+          "Ensure astro.config.mjs uses only official Astro i18n config"
+        ],
+        "requirements": [
+          "Maintain existing Arabic and English language support",
+          "Preserve all translation functionality",
+          "Ensure build succeeds on Cloudflare Workers",
+          "Test language switching after migration"
+        ]
+      },
+      "priority": "critical",
+      "status": "pending"
+    }
+  ][],
   "instructions": "This file is monitored by the AI assistant. Tasks added here will be executed by Copilot."
 }
