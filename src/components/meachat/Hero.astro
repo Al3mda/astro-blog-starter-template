@@ -7,10 +7,10 @@ import Button from '../ui/Button.astro';
 import humanAvatar from '../../assets/img/human-avatar.jpg';
 import hero from '../../assets/img/hero-bg.jpeg';
 
-const locale = getLocale(Astro.url);
-const locale = Astro.currentLocale || "en";const isRTL = locale === 'ar';-->
+const locale = Astro.currentLocale || "en"
 const t = getTranslation(locale);
 const isRTL = locale === 'ar';
+---
 <section id="hero" class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center"  style={`background: url(${hero.src}) center center / cover no-repeat `}>
   
   <!-- Animated particles (optional) -->
