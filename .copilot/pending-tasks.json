@@ -3,14 +3,18 @@
   "tasks": [
     {
       "id": "hello-test-001",
-      "timestamp": "2025-12-18T15:00:00Z",      "type": "greeting",: "Test message: Say hello to user",
-            "type": "greeting"
+            "timestamp": "2025-12-18T18:00:00Z",
+            "type": "greeting",
+            "description": "Test message: Say hello to user",
       "details": {
         "message": "مرحبا! هذا اختبار للتواصل مع Copilot",
         "action": "Please respond in completed-tasks.json"
       },
       "priority": "high",
       "status": "pending"
+        ],
+  "instructions": "This file is monitored by the AI assistant. Tasks added here will be executed by Copilot."
+}
     }
   ]],
   "instructions": "This file is monitored by the AI assistant. Tasks added here will be executed by Copilot."
