@@ -2,18 +2,15 @@
 // src/components/meachat/Hero.astro
 // Hero section with animated chat simulation
 
-import { getLocale } from "astro-i18n-aut";
 import { getTranslation } from '../../i18n/meachat.ts';
 import Button from '../ui/Button.astro';
 import humanAvatar from '../../assets/img/human-avatar.jpg';
 import hero from '../../assets/img/hero-bg.jpeg';
 
 const locale = getLocale(Astro.url);
+const locale = Astro.currentLocale || "en";const isRTL = locale === 'ar';-->
 const t = getTranslation(locale);
 const isRTL = locale === 'ar';
----
-
-  <!-- Background with gradient overlay -->
 <section id="hero" class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center"  style={`background: url(${hero.src}) center center / cover no-repeat `}>
   
   <!-- Animated particles (optional) -->
