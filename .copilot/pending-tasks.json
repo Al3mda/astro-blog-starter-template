@@ -1,5 +1,18 @@
 {
   "version": "1.0",
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "test-002",
+      "timestamp": "2025-12-18T21:00:00Z",
+      "type": "greeting",
+      "description": "كيف حالك يا Copilot؟",
+      "details": {
+        "message": "نجرب النظام مرة ثانية - قول لنا نكتة برمجية!",
+        "action": "Tell us a programming joke in Arabic"
+      },
+      "priority": "high",
+      "status": "pending"
+    }
+  ],],
   "instructions": "This file is monitored by the AI assistant. Tasks added here will be executed by Copilot."
 }
