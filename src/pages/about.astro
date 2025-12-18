@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/BlogPost.astro';
-import { Schema } from 'astro-seo-schema';
-
 const locale = Astro.currentLocale || "en";
 let title: string;
 switch (locale) {
@@ -28,19 +26,7 @@ switch (locale) {
 	updatedDate={new Date('May 30 2023')}
 	heroImage="/blog-placeholder-about.jpg"
 >
-	<Schema
-		item={{
-			'@context': 'https://schema.org',
-			'@type': 'Person',
-			name: 'Your Name',
-			url: 'https://example.com',
-			image: 'https://example.com/image.jpg',
-			sameAs: [
-				'https://twitter.com/yourhandle',
-				'https://linkedin.com/in/yourhandle'
-			]
-		}}
-	/>
+	
 	{locale === "ar" ? (
 		<>
 			<p>
