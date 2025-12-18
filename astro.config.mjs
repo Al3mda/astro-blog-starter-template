@@ -2,7 +2,6 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import robotsTxt from "astro-robots-txt";
 import cloudflare from "@astrojs/cloudflare";
 
@@ -13,21 +12,15 @@ export default defineConfig({
   site: "https://example.com/",
   trailingSlash: "always",
   build: { format: "directory" },
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "ar"],
+  },
   integrations: [
-    i18n({
-      locales: {
-        "en": "en",
-        "ar": "ar",
-      },
-      defaultLocale: "en",
-      exclude: ["pages/rss.xml.js"],
-    }),
     mdx(),
-    sitemap({
-      filter: filterSitemapByDefaultLocale({ defaultLocale: "en" }),
-    }),
+    sitemap(),
     robotsTxt({
-      sitemaps: [
+      sitemap: [
         "https://example.com/sitemap-index.xml",
       ],
     }),
