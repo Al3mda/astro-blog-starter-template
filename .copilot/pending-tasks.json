@@ -1,5 +1,18 @@
 {
   "version": "1.0",
-  "tasks": [],
+  "tasks": []
+    {
+      "id": "test-hello-001",
+      "timestamp": "2025-12-18T19:00:00Z",
+      "type": "test",
+      "description": "Test greeting from Copilot",
+      "details": {
+        "action": "reply",
+        "message": "Please respond with 'مرحبا! أنا هنا وجاهز للمساعدة 👋'"
+      },
+      "priority": "high",
+      "status": "pending"
+    }
+  ],
   "instructions": "This file is monitored by the AI assistant. Tasks added here will be executed by Copilot."
 }
