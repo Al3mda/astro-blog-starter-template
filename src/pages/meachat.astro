@@ -8,9 +8,12 @@ import Header from '../components/meachat/Header.astro';
 import Hero from '../components/meachat/Hero.astro';
 import Footer from '../components/meachat/Footer.astro';
 
-const locale = Astro.currentLocale || "en";const t = getTransgetLocale(Astro.url)lation(locale);iption}>
+const locale = Astro.currentLocale || "en";
 const t = getTranslation(locale);
+---
+<MeaChatLayout>
   <Header />
+
   
   <main>
     <Hero />
