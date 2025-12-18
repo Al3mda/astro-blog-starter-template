@@ -1,21 +1,24 @@
 ---
 import '../styles/style.css';
+import { type Locale, isRTL } from '../utils/i18n';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
+    locale?: Locale;
   title: string;
   description?: string;
   lang?: string;
 }
 
+const { locale = 'en' } = Astro.props;
 const { 
   title, 
   description = 'MeaChat - Multi-channel messaging platform',
   lang = 'en' 
 } = Astro.props;
 
-const isRTL = lang === 'ar';
+const rtl = isRTL(locale);
 ---
 
 <!DOCTYPE html>
@@ -51,10 +54,10 @@ const isRTL = lang === 'ar';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <Header />
+    <Header locale={locale} />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
   </body>
 </html>
