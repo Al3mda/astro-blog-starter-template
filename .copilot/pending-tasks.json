@@ -1,14 +1,25 @@
 {
   "version": "1.0",
-  "tasks": []
+  "tasks": [
     {
-      "id": "test-hello-001",
-      "timestamp": "2025-12-18T19:00:00Z",
-      "type": "test",
-      "description": "Test greeting from Copilot",
+      "id": "arabic-support-001",
+      "timestamp": "2025-12-18T19:30:00Z",
+      "type": "modify",
+      "description": "Add full Arabic language support to the project",
       "details": {
-        "action": "reply",
-        "message": "Please respond with 'مرحبا! أنا هنا وجاهز للمساعدة 👋'"
+        "files": [
+          "astro.config.mjs",
+          "src/layouts/BaseLayout.astro",
+          "src/components/Header.astro"
+        ],
+        "requirements": [
+          "Add RTL direction support",
+          "Set lang='ar' attribute",
+          "Configure proper Arabic fonts",
+          "Add dir='rtl' to html tag",
+          "Update meta tags for Arabic",
+          "Ensure proper text alignment"
+        ]
       },
       "priority": "high",
       "status": "pending"
