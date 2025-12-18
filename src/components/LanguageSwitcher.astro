@@ -1,4 +1,5 @@
 ---
+import { getLocale } from "astro-i18n-aut";
 
 const locale = getLocale(Astro.url) || "en";
 const stripped = Astro.url.pathname.replace(/^\/(ar|en)(?=\/|$)/i, "");
