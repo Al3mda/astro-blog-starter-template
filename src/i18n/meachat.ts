@@ -28,6 +28,37 @@ export const meachatTranslations = {
       chatCustomer: 'Hi, I want to check my order status.',
       chatBot2: 'Your order is on the way 🚚\nDelivery today between 4–6 PM.\nReply 1 to change the time or 2 to talk to a human.',
     },
+
+        features: {
+      title: 'Powerful Features',
+      subtitle: 'Everything you need to build, manage and scale conversational experiences across all channels',
+      items: [
+        {
+          title: 'Drag & Drop Flow Builder',
+          description: 'Create complex conversation flows without coding',
+        },
+        {
+          title: 'AI Replies',
+          description: 'Smart responses based on user intent',
+        },
+        {
+          title: 'Shared Inbox',
+          description: 'Collaborate with your team on conversations',
+        },
+        {
+          title: 'WhatsApp Catalog',
+          description: 'Sell products directly in chat',
+        },
+        {
+          title: 'Webhook Flow',
+          description: 'Connect to external systems and APIs',
+        },
+        {
+          title: 'Smart Form',
+          description: 'Collect information with conversational forms',
+        },
+      ],
+    },
     
     channels: {
       title: 'Choose Your Channel',
