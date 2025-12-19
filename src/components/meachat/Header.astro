@@ -14,40 +14,41 @@ const rtl = isRTL(locale);
 const oppositeLocale = getOppositeLocale(locale);
 ---
 
-<header class="fixed top-0 left-0 right-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
+<<header class="fixed top-0 left-0 right-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
   <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-     <!-- Logo -->
-      <a href={getLocalizedPath('/', locale)} class="flex items-center">
-        <img
-          src={logoLight.src}
-          alt="MeaChat Logo"
-          width="200"
-          height="50"
-          class="h-10 w-auto"
-        />
-      </a>
-    <nav class="flex items-center justify-between">
+    <!-- Logo -->
+    <a href={getLocalizedPath('/', locale)} class="flex items-center">
+      <img
+        src={logoLight.src}
+        alt="MeaChat Logo"
+        width="200"
+        height="50"
+        class="h-10 w-auto"
+      />
+    </a>
+
+    <div class="flex items-center gap-8">
       <!-- Navigation Links -->
-      <div class="hidden md:flex items-center space-x-8">
+      <nav class="hidden md:flex items-center space-x-8">
         <a 
           href={getLocalizedPath('/', locale)}
           class="text-white hover:text-primary transition-colors"
         >
           {t('header.home')}
         </a>
-         <a 
+        <a 
           href={getLocalizedPath('#features', locale)}
           class="text-white hover:text-primary transition-colors"
         >
           {t('header.features')}
         </a>
-         <a 
+        <a 
           href={getLocalizedPath('#pricing', locale)}
           class="text-white hover:text-primary transition-colors"
         >
           {t('header.pricing')}
         </a>
-         <a 
+        <a 
           href={getLocalizedPath('/blog', locale)}
           class="text-white hover:text-primary transition-colors"
         >
@@ -59,17 +60,18 @@ const oppositeLocale = getOppositeLocale(locale);
         >
           {t('header.about')}
         </a>
-         <a 
+        <a 
           href={getLocalizedPath('/docs', locale)}
           class="text-white hover:text-primary transition-colors"
         >
           {t('header.docs')}
         </a>
-      </div>
-    </nav>
-      <div class="hidden md:block flex gap-3 items-center justify-between"> 
-         <!-- Language Switcher -->
-        <div class="flex pl-8">
+      </nav>
+
+      <!-- Lang + buttons -->
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Language Switcher -->
+        <div class="flex items-center gap-2">
           <a
             href={locale === 'en' ? '/' : getLocalizedPath('/', oppositeLocale)}
             class={`text-sm transition-colors ${
@@ -88,26 +90,27 @@ const oppositeLocale = getOppositeLocale(locale);
             {t('header.arabic')}
           </a>
         </div>
-          <!-- Call to Action Buttons -->
 
-
-      <a href="#" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap">{t('header.dashboard')}</a>
-      </div> 
-
-      
-  <a href="#" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap">
-    Dashboard
-  </a>
-
-  <a href="#" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap">
-    sign in
-  </a>
-</div>
-
-
-    </div> 
+        <!-- Call to Action Buttons -->
+        <div class="flex items-center gap-3">
+          <a
+            href="#"
+            class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+          >
+            {t('header.dashboard')}
+          </a>
+          <a
+            href="#"
+            class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+          >
+            {t('header.signin')}
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
+
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
