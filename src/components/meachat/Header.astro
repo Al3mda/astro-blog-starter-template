@@ -14,7 +14,7 @@ const rtl = isRTL(locale);
 const oppositeLocale = getOppositeLocale(locale);
 ---
 
-<<header class="fixed top-0 left-0 right-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
+<header class="fixed top-0 left-0 right-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
   <div class="container mx-auto px-4 py-4 flex items-center justify-between">
     <!-- Logo -->
     <a href={getLocalizedPath('/', locale)} class="flex items-center">
@@ -23,7 +23,8 @@ const oppositeLocale = getOppositeLocale(locale);
         alt="MeaChat Logo"
         width="200"
         height="50"
-        class="h-10 w-auto"
+        class="object-contain" 
+        style="height:auto; max-width:200px"
       />
     </a>
 
@@ -150,7 +151,18 @@ const oppositeLocale = getOppositeLocale(locale);
         >
           {t('header.docs')}
         </a>
-  <a href="#" class="gradient-bg text-white px-6 py-3 rounded-button font-medium text-center mt-4 whitespace-nowrap">{t('header.dashboard')}</a>
+  <a
+            href="#"
+            class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+          >
+            {t('header.dashboard')}
+          </a>
+          <a
+            href="#"
+            class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+          >
+            {t('header.signin')}
+          </a>
 
 </div>
 
