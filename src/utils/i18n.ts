@@ -11,6 +11,11 @@ export const messages = {
     'header.about': 'About',
     'header.english': 'English',
     'header.arabic': 'العربية',
+        'header.features': 'Features',
+        'header.pricing': 'Pricing',
+        'header.docs': 'Docs',
+        'header.dashboard': 'Dashboard',
+        'header.signin': 'Sign In',
     
     // Hero Section
     'hero.title': 'MeaChat instantly supports your customers with',
@@ -67,6 +72,11 @@ export const messages = {
     'header.about': 'من نحن',
     'header.english': 'EN',
     'header.arabic': 'ع',
+        'header.features': 'الميزات',
+        'header.pricing': 'الأسعار',
+        'header.docs': 'المستندات',
+        'header.dashboard': 'لوحة التحكم',
+        'header.signin': 'تسجيل الدخول',
     
     // Hero Section
     'hero.title': 'ميتشات يدعم عملائك فوراً مع',
@@ -158,4 +168,5 @@ export function getLocalizedPath(path: string, locale: Locale): string {
     return `/ar${path === '/' ? '' : path}`;
   }
   return path;
+
 }
