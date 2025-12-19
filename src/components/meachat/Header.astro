@@ -51,8 +51,7 @@ const oppositeLocale = getOppositeLocale(locale);
        
       </div>
     </nav>
-
-    <div class="hidden md:block"> <!-- Language Switcher -->
+<!-- Language Switcher -->
         <div class="flex items-center gap-3 border-l border-white/10 pl-8">
           <a
             href={locale === 'en' ? '/' : getLocalizedPath('/', oppositeLocale)}
@@ -72,7 +71,7 @@ const oppositeLocale = getOppositeLocale(locale);
             {t('header.arabic')}
           </a>
         </div>
-
+      <div class="hidden md:block"> 
       <a href="#" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap">Dashboard</a>
     </div>
   </div>
