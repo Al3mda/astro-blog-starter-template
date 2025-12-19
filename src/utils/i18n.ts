@@ -65,8 +65,8 @@ export const messages = {
     'header.home': 'الرئيسية',
     'header.blog': 'المدونة',
     'header.about': 'من نحن',
-    'header.english': 'English',
-    'header.arabic': 'العربية',
+    'header.english': 'EN',
+    'header.arabic': 'ع',
     
     // Hero Section
     'hero.title': 'ميتشات يدعم عملائك فوراً مع',
